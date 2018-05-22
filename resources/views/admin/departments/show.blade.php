@@ -229,14 +229,7 @@
                     @endsection
     
 @section('footer')
-<!-- CharJs -->
-{!! Html::script(asset('admin/js/Chart.min.js')) !!}
 
-
-<!-- echarts.min.js -->
-{!! Html::script(asset('admin/js/echart/echarts.min.js')) !!}
-<!-- world.js echarts -->
-{!! Html::script(asset('admin/js/echart/world.js')) !!}
 <script>
   
         echarts.init(document.getElementById('deptJobChart')).setOption({

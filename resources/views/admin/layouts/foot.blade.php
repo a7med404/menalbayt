@@ -20,6 +20,14 @@
     {!! Html::script(asset('admin/js/validate.min.js')) !!}
     <!-- Toaster JavaScript -->
     {!! Html::script(asset('admin/js/toastr.min.js')) !!}
+    <!-- CharJs -->
+    {!! Html::script(asset('admin/js/Chart.min.js')) !!}
+
+
+    <!-- echarts.min.js -->
+    {!! Html::script(asset('admin/js/echart/echarts.min.js')) !!}
+    <!-- world.js echarts -->
+    {!! Html::script(asset('admin/js/echart/world.js')) !!}
 
     @yield('footer') 
 

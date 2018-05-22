@@ -243,7 +243,6 @@
                                     </span>
                                     <h4 style="margin:18px">Weekly sales progress</h4>
                                 </div>
-
                                 <div class="col-md-5">
                                     <div class="row" style="text-align: center;">
                                     <div class="col-md-4">
@@ -537,16 +536,10 @@
                         </div>
                         </div>
 
-
-                        <canvas id="genderChart"></canvas>
-
-
                         
                     @endsection
     
 @section('footer')
-<!-- CharJs -->
-{!! Html::script(asset('admin/js/Chart.min.js')) !!}
 <script>
     let canvasDoughnut = $('#canvasDoughnut');
     let massPoprChart = new Chart(canvasDoughnut, {
