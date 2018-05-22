@@ -56,38 +56,6 @@
 
 
 
-                        <div class="row top_tiles" style="margin: 10px 0;">
-                            <div class="col-md-3 tile">
-                                <span>Total Sessions</span>
-                                <h2>231,809</h2>
-                                <span class="sparkline_two" style="height: 160px;">
-                                    <canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
-                                </span>
-                            </div>
-                            <div class="col-md-3 tile">
-                                <span>Total Revenue</span>
-                                <h2>$ 1,231,809</h2>
-                                <span class="sparkline_two" style="height: 160px;">
-                                    <canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
-                                </span>
-                            </div>
-                            <div class="col-md-3 tile">
-                                <span>Total Sessions</span>
-                                <h2>231,809</h2>
-                                <span class="sparkline_three" style="height: 160px;">
-                                    <canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
-                                </span>
-                            </div>
-                            <div class="col-md-3 tile">
-                                <span>Total Sessions</span>
-                                <h2>231,809</h2>
-                                <span class="sparkline_two" style="height: 160px;">
-                                    <canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
-                                </span>
-                            </div>
-                        </div>
-
-
 
                         <div class="col-md-12">
                             <div class="x_panel">
@@ -103,27 +71,11 @@
                             </div>
                             <div class="x_content">
                                 <div class="col-md-9 col-sm-12 col-xs-12">
-                                <div class="demo-container" style="height:280px">
-                                    <div id="chart_plot_02" class="demo-placeholder" style="padding: 0px; position: relative;"><canvas class="flot-base" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 759px; height: 280px;" width="759" height="280"></canvas><div class="flot-text" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; font-size: smaller; color: rgb(84, 84, 84);"><div class="flot-x-axis flot-x1-axis xAxis x1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;"><div style="position: absolute; max-width: 63px; top: 264px; left: 47px; text-align: center;" class="flot-tick-label tickLabel">21/05/18</div><div style="position: absolute; max-width: 63px; top: 264px; left: 118px; text-align: center;" class="flot-tick-label tickLabel">23/05/18</div><div style="position: absolute; max-width: 63px; top: 264px; left: 189px; text-align: center;" class="flot-tick-label tickLabel">25/05/18</div><div style="position: absolute; max-width: 63px; top: 264px; left: 260px; text-align: center;" class="flot-tick-label tickLabel">27/05/18</div><div style="position: absolute; max-width: 63px; top: 264px; left: 331px; text-align: center;" class="flot-tick-label tickLabel">29/05/18</div><div style="position: absolute; max-width: 63px; top: 264px; left: 402px; text-align: center;" class="flot-tick-label tickLabel">31/05/18</div><div style="position: absolute; max-width: 63px; top: 264px; left: 473px; text-align: center;" class="flot-tick-label tickLabel">02/06/18</div><div style="position: absolute; max-width: 63px; top: 264px; left: 544px; text-align: center;" class="flot-tick-label tickLabel">04/06/18</div><div style="position: absolute; max-width: 63px; top: 264px; left: 615px; text-align: center;" class="flot-tick-label tickLabel">06/06/18</div><div style="position: absolute; max-width: 63px; top: 264px; left: 686px; text-align: center;" class="flot-tick-label tickLabel">08/06/18</div></div><div class="flot-y-axis flot-y1-axis yAxis y1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;"><div style="position: absolute; top: 246px; left: 12px; text-align: right;" class="flot-tick-label tickLabel">0</div><div style="position: absolute; top: 205px; left: 6px; text-align: right;" class="flot-tick-label tickLabel">20</div><div style="position: absolute; top: 164px; left: 6px; text-align: right;" class="flot-tick-label tickLabel">40</div><div style="position: absolute; top: 123px; left: 6px; text-align: right;" class="flot-tick-label tickLabel">60</div><div style="position: absolute; top: 82px; left: 6px; text-align: right;" class="flot-tick-label tickLabel">80</div><div style="position: absolute; top: 41px; left: 0px; text-align: right;" class="flot-tick-label tickLabel">100</div><div style="position: absolute; top: 0px; left: 0px; text-align: right;" class="flot-tick-label tickLabel">120</div></div></div><canvas class="flot-overlay" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 759px; height: 280px;" width="759" height="280"></canvas><div class="legend"><div style="position: absolute; width: 69px; height: 16px; top: -17px; right: 21px; background-color: rgb(255, 255, 255); opacity: 0.85;"> </div><table style="position:absolute;top:-17px;right:21px;;font-size:smaller;color:#3f3f3f"><tbody><tr><td class="legendColorBox"><div style="border:1px solid null;padding:1px"><div style="width:4px;height:0;border:5px solid rgb(150,202,89);overflow:hidden"></div></div></td><td class="legendLabel">Email Sent&nbsp;&nbsp;</td></tr></tbody></table></div></div>
-                                </div>
-                                <div class="tiles">
-                                    <div class="col-md-4 tile">
-                                    <span>Total Sessions</span>
-                                    <h2>231,809</h2>
-                                    <span class="sparkline11 graph" style="height: 160px;"><canvas style="display: inline-block; width: 198px; height: 40px; vertical-align: top;" width="198" height="40"></canvas></span>
+                                    <div class="demo-container" style="height:280px">
+                                        <div class="table-responsive">
+                                            <div id="offersRepport" style="width:100%; height:360px;"></div> 
+                                        </div>
                                     </div>
-                                    <div class="col-md-4 tile">
-                                    <span>Total Revenue</span>
-                                    <h2>$231,809</h2>
-                                    <span class="sparkline22 graph" style="height: 160px;"><canvas style="display: inline-block; width: 200px; height: 40px; vertical-align: top;" width="200" height="40"></canvas></span>
-                                    </div>
-                                    <div class="col-md-4 tile">
-                                    <span>Total Sessions</span>
-                                    <h2>231,809</h2>
-                                    <span class="sparkline11 graph" style="height: 160px;"><canvas style="display: inline-block; width: 198px; height: 40px; vertical-align: top;" width="198" height="40"></canvas></span>
-                                    </div>
-                                </div>
-
                                 </div>
 
                                 <div class="col-md-3 col-sm-12 col-xs-12">
@@ -667,6 +619,299 @@
         }
     });
     
+
+  
+        echarts.init(document.getElementById('offersRepport')).setOption({
+
+          title : {
+              show: true,
+              text: 'Offers Repports', 
+              textStyle:{
+                color: '#73879c',
+              },
+              subtext: 'Dayliy Done Offers And New',
+              padding: [6, 10],
+              itemGap: 10,
+              left: 10,
+          },
+          tooltip : {
+              trigger: 'item',
+              axisPointer: {
+                type: 'shadow',
+                axis: 'line',
+                label: {
+                  show: true,
+                  precision: 2,// 5,'tets'
+                  extraCssText: 'box-shadow: 0 0 8px rgba(0, 0, 0, 0.9);', // Extra CSS style for floating layer. The following is an example for adding shadow.
+                },
+              }
+          },
+          legend: {
+              data:['New Offers','Done Offers'],
+              type: 'scroll', // scroll, plain  Scrollable legend. It helps when too many legend items needed to be shown.
+              show: true,
+              orient : 'horizontal', // vertical  default => horizontal
+              align:  'right', //  'auto','left','right'
+              padding: [10, 5],
+              itemGap: 25, // The distance between each legend, horizontal distance in horizontal layout, and vertical distance in vertical layout.
+              itemWidth: 25, // itemHeight = Image width of legend symbol.
+              selectedMode: true,  // Selected mode of legend, which controls whether series can be toggled displaying by clicking legends. It is enabled by default, and you may set it to be false to disabled it.
+              selectedMode: 'multiple',  //Besides, it can be set to 'single' or 'multiple', for single selection and multiple selection.
+              inactiveColor: '#DDD', // Legend color when not selected.
+              textStyle: {
+                fontWeight: 'bold', // default => normal
+              },
+              data: [
+                {
+                  name: 'New Offers', //Name of legend, which should be the name value of a certain series. If it is a pie chart, legend name can also be the name of a single data item // compulsorily set icon as a circle
+                  icon: 'roundRect', // Icon types provided by ECharts includes 'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow'
+                  textStyle: {
+                    color: '#ffcc33'
+                  }
+                },
+                {
+                  name: 'Done Offers',
+                  icon: 'pin',
+                  textStyle: {
+                    color: '#2f4554'
+                  }
+                },
+              ]
+          },
+          grid: {
+            show: true,
+            left: '10%',
+            tooltip: {
+              show: true,
+              trigger: 'axis',
+              axisPointer: {
+                type: 'cross',
+                axis: 'x', 
+                label: {
+                  show: true,
+                  precision: 2,
+                  extraCssText: 'box-shadow: 10 10 8px rgba(0, 0, 0, 0.5);',
+                },
+                lineStyle: {
+                  color: {
+                      type: 'radial',
+                      x: 0.5,
+                      y: 0.5,
+                      r: 0.5,
+                      colorStops: [{
+                          offset: 0, color: 'red' // color at 0% position
+                      }, {
+                          offset: 1, color: 'blue' // color at 100% position
+                      }],
+                      globalCoord: false // false by default
+                  }
+                },
+                shadowStyle: {
+                  color: {
+                      type: 'radial',
+                      x: 0.5,
+                      y: 0.5,
+                      r: 0.5,
+                      colorStops: [{
+                          offset: 0, color: 'red' // color at 0% position
+                      }, {
+                          offset: 1, color: 'blue' // color at 100% position
+                      }],
+                      globalCoord: false // false by default
+                  }
+                }
+              },
+              position: {
+                  position: ['50%', '50%']
+              }
+            }
+          },
+          toolbox: {
+              show : true,
+              orient: 'vertical',
+              itemSize: 15,
+              itemGap: 10,
+              showTitle: true,
+              feature : {
+                mark : {show: true},
+                dataView : {
+                  show: true, 
+                  readOnly: false,
+                  lang: ['data view','turn off', 'refresh'],
+                  textareaBorderColor: '#0FF',
+                  title: 'View Data As Table',
+                },
+                magicType : {
+                  show: true, 
+                  type: ['line', 'bar', 'pie', 'stack'],
+                  title: {
+                    line: 'line',
+                    bar: 'bar',
+                    pie: 'pie',
+                    stack: 'stack',
+                  }
+                },
+                dataZoom: {
+                  title: {
+                    zoom: 'Area Zooming',
+                    back: 'Restore Area Zooming',
+                  },
+                },
+                restore : {
+                  show: true,
+                  title: 'Restore',
+                },
+                saveAsImage : {
+                  show: true,
+                  type: 'jpeg', 
+                  title: 'Save Image As',
+                  pixelRatio: 55, // Resolution ratio to save image, whose default value is that of the container. Values larger than 1 (e.g.: 2) is supported when you need higher resolution.
+                }
+              }
+          },
+          aria: {
+              show: true
+          },
+          calculable : true,
+          xAxis : [
+              {
+                /*          
+
+                  'value' Numerical axis, suitable for continuous data.
+
+                  'category' Category axis, suitable for discrete category data. Data should only be set via data for this type.
+
+                  'time' Time axis, suitable for continuous time series data. As compared to value axis, it has a better formatting for time and a different tick calculation method. For example, it decides to use month, week, day or hour for tick based on the range of span.
+
+                  'log' Log axis, suitable for log data.
+
+                */
+                  type : 'category', 
+                  data : ['web developer','mopile Application','Teaster','Programming','Graphical','Designer','Teatcher','Worker','SEO','Freelancer','Writer','Devolper'],
+                
+                  show: true,
+                  position: 'bottom',
+                  offset: 10,  //Offset of x axis relative to default position. Useful when multiple x axis has same position value.
+                  name: 'Dept',
+                  nameLocation: 'start', //  'start' 'middle' or 'center'  'end'
+                  nameGap: 30, //Gap between axis name and axis line.
+                  nameRotate: 0, //Rotation of axis name.
+                  inverse: 0, // Whether axis is inversed. New option from ECharts 3.
+                  boundaryGap: ['50%', '20%'], 
+                  //max: 2000,
+                  //min: 10,
+                  scale: true, //It is available only in numerical axis, i.e., type: 'value'.
+                  //It specifies whether not to contain zero position of axis compulsively. When it is set to be true, the axis may not contain zero position, which is useful in the scatter chart for both value axes.
+                  //This configuration item is unavailable when the min and max are set.
+                  //splitNumber: 4,//
+                  //minInterval: ,// Maximum gap between split lines.
+                  /*
+                    For example, in time axis (type is 'time'), it can be set to be 3600 * 24 * 1000 to make sure that the gap between axis labels is less than or equal to one day.
+
+                    {
+                        maxInterval: 3600 * 1000 * 24
+                    }
+                    It is available only for axis of type 'value' or 'time'.
+                  */
+
+                  axisLine:{
+                    show: true,
+                    onZero: false,
+                    onZeroAxisIndex: 5,
+
+                    // Name list of all categories
+                  data : ['web developer','mopile Application','Teaster','Programming','Graphical','Designer','Teatcher','Worker','SEO','Freelancer','Writer','Devolper'],                    data: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                    // Each item could also be a specific configuration item.
+                    // In this case, `value` is used as the category name.
+                    data: [{
+                        value: 'web develope',
+                        // Highlight Monday
+                        textStyle: {
+                            fontSize: 20,
+                            color: 'red'
+                        }
+                    }, 'mopile Application','Teaster','Programming','Graphical','Designer','Teatcher','Worker','SEO','Freelancer','Writer','Devolper']
+
+
+                  }
+                                
+                }
+          ],
+          yAxis : [
+              {
+                  type : 'value'
+              },
+              {
+                min: 300,
+              }
+          ],
+          dataZoom:[
+            {
+              type: 'inside',
+              disabled: false,
+              //xAxisIndex: [0,2],
+            }
+            
+          ],
+          /*visualMap:[
+            { // the first visualMap component
+            type: 'continuous', // defined to be continuous viusalMap
+            },
+            { // the sencond visualMap component
+                type: 'piecewise', // defined to be piecewise visualMap
+            }
+          ],*/
+
+          /*series : [
+              {name: 'Shanghai', value: 251},
+              {name: 'Haikou', value: 21},
+              // Mark as `visualMap: false`, then this item does not controlled by visualMap any more,
+              // and series visual config (like color, symbol, ...) can be used to this item.
+              {name: 'Beijing', value: 821, },
+          ],
+          */
+
+          series : [
+            {
+              name:'New Offers',
+              type:'bar',
+              color: ['#ffcc33'],
+              data:[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3],
+              markPoint : {
+                data : [
+                  {type : 'max', name: 'maximum'},
+                  {type : 'min', name: 'minimum'}
+                ]
+              },
+              markLine : {
+                data : [
+                  {type : 'average', name: 'average'}
+                ]
+              },
+              textStyle: {
+                    color: '#ffcc33'
+                }
+            },
+            {
+              name:'Done Offers',
+              type:'bar',
+              color: ['#2f4554'],
+              data:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3], 
+              markPoint : {
+                data : [
+                  {name : 'max', value : 182.2, xAxis: 7, yAxis: 183, symbolSize:50},
+                  {name : 'min', value : 2.3, xAxis: 11, yAxis: 3}
+                ]
+              },
+              markLine : {
+                data : [
+                  {type : 'average', name : 'average'}
+                ]
+              }
+            }
+          ] 
+        });
+
 
 </script>
 @endsection

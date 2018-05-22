@@ -112,7 +112,7 @@
                               </div>
                               <!-- start of user-activity-graph -->
                               <div class="table-responsive">
-                              <div id="deptJobChart" style="width:100%; height:360px;"></div> 
+                                <div id="deptJobChart" style="width:100%; height:360px;"></div> 
                               </div>
                               <!-- end of user-activity-graph -->
 
