@@ -1,0 +1,48 @@
+
+-------------------------------------------------------------
+==> 28/4/2018
+-- Have DataBase Migration -
+-- Have Validetor Request 
+-- Crud For Customer
+-- Admin Panel
+-- Have toastr.js
+-- Have DataTable
+-- Helper Class
+-- 
+
+ ==> 30/4/2018
+-- Edit Migration So Well 
+-- Edit Request
+-- Add getDefaultImage() In Helper Class
+-- Edit In Relationship 
+-- Edit In Index Customer Blade 
+-- Have Good Upload Image
+
+
+ ==> 3/5/2018
+-- Edit Some Table 
+-- Add View for Some 
+-- Add function to Helper Class
+-- Edit In Relationship With Models
+
+
+ ==> 6/5/2018
+-- Add More views
+-- Add View for Some 
+-- Add function to Helper Class
+-- Add Some Pulgins 
+    - dataBakier
+    - 
+-- Multible Upload
+-- Edit OfferController 
+
+
+ ==> 13/5/2018
+-- Upload Class
+-- Multible Upload
+
+
+ ==> 20/5/2018
+-- Add View To Provider Class
+-- Add Show To [Customer, offer, Department, Job, Provider]
+-- Edit Some Function To Models
