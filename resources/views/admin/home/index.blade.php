@@ -81,7 +81,7 @@
                                 <div class="col-md-3 col-sm-12 col-xs-12">
                                 <div>
                                     <div class="x_title">
-                                    <h2>Top Profiles</h2>
+                                    <h2>Top Offers</h2>
                                     <ul class="nav navbar-right panel_toolbox">
                                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                         </li>
@@ -798,8 +798,6 @@
                   nameRotate: 0, //Rotation of axis name.
                   inverse: 0, // Whether axis is inversed. New option from ECharts 3.
                   boundaryGap: ['50%', '20%'], 
-                  //max: 2000,
-                  //min: 10,
                   scale: true, //It is available only in numerical axis, i.e., type: 'value'.
                   //It specifies whether not to contain zero position of axis compulsively. When it is set to be true, the axis may not contain zero position, which is useful in the scatter chart for both value axes.
                   //This configuration item is unavailable when the min and max are set.
@@ -848,29 +846,11 @@
           dataZoom:[
             {
               type: 'inside',
-              disabled: false,
+              disabled: true,
               //xAxisIndex: [0,2],
             }
             
           ],
-          /*visualMap:[
-            { // the first visualMap component
-            type: 'continuous', // defined to be continuous viusalMap
-            },
-            { // the sencond visualMap component
-                type: 'piecewise', // defined to be piecewise visualMap
-            }
-          ],*/
-
-          /*series : [
-              {name: 'Shanghai', value: 251},
-              {name: 'Haikou', value: 21},
-              // Mark as `visualMap: false`, then this item does not controlled by visualMap any more,
-              // and series visual config (like color, symbol, ...) can be used to this item.
-              {name: 'Beijing', value: 821, },
-          ],
-          */
-
           series : [
             {
               name:'New Offers',
