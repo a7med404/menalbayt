@@ -21,6 +21,7 @@
                       </a>
                     </li>
                     <li><a href="javascript:;">Help</a></li>
+                    <li><a href="{{ route('change-locale', ['locale' => \Session::get('locale')]) }}">{{ \App::getLocale() }}</a></li>
                     <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>

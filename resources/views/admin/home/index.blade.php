@@ -24,32 +24,32 @@
                             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                                 <span class="count_top"><i class="fa fa-user"></i> Total Customers</span>
                                 <div class="count">{{ $customerMale->count() + $customerFemale->count() }}</div>
-                                <span class="count_bottom"><i class="green">4% </i> From last Week</span>
+                                <span class="count_bottom"><i class="main-color">4% </i> From last Week</span>
                             </div>
                             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                                <span class="count_top"><i class="fa fa-user"></i> Total Males</span>
-                                <div class="count main-color">{{ $customerMale->count() }}</div>
-                                <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+                                <span class="count_top"><i class="fa fa-user"></i> Total New Offer</span>
+                                <div class="count main-color">{{ $offernNew->count() }}</div>
+                                <span class="count_bottom"><i class="main-color"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
                             </div>
                             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                                <span class="count_top"><i class="fa fa-user"></i> Total Females</span>
-                                <div class="count">{{ $customerFemale->count() }}</div>
+                                <span class="count_top"><i class="fa fa-user"></i>  Total Done Offer</span>
+                                <div class="count">{{ $offernDone->count() }}</div>
                                 <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span>
                             </div>
                             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                                 <span class="count_top"><i class="fa fa-clock-o"></i> Average Time</span>
                                 <div class="count">123.50</div>
-                                <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
+                                <span class="count_bottom"><i class="main-color"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
                             </div>
                             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                                 <span class="count_top"><i class="fa fa-user"></i> Total Collections</span>
                                 <div class="count">2,315</div>
-                                <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+                                <span class="count_bottom"><i class="main-color"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
                             </div>
                             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                                 <span class="count_top"><i class="fa fa-user"></i> Total Connections</span>
                                 <div class="count">7,325</div>
-                                <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+                                <span class="count_bottom"><i class="main-color"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
                             </div>
                         </div>
                         <!-- /top tiles -->
@@ -61,7 +61,7 @@
                         <div class="col-md-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Offers Summary <small>Dayliy Progress</small></h2>
+                                    <h2>Offers Summary </h2>
                                     <div class="filter">
                                     <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
                                         <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
@@ -80,25 +80,25 @@
                                     </div>
 
                                     <div class="col-md-3 col-sm-12 col-xs-12">
-                                    <div>
+                                    <div class="float">
                                         <div class="x_title">
-                                        <h2>Top Offers</h2>
-                                        <ul class="nav navbar-right panel_toolbox">
-                                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                            </li>
-                                            <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Settings 1</a>
+                                            <h2>Top Offers</h2>
+                                            <ul class="nav navbar-right panel_toolbox">
+                                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                                 </li>
-                                                <li><a href="#">Settings 2</a>
+                                                <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li><a href="#">Settings 1</a>
+                                                    </li>
+                                                    <li><a href="#">Settings 2</a>
+                                                    </li>
+                                                </ul>
+                                                </li>
+                                                <li><a class="close-link"><i class="fa fa-close"></i></a>
                                                 </li>
                                             </ul>
-                                            </li>
-                                            <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                            </li>
-                                        </ul>
-                                        <div class="clearfix"></div>
+                                            <div class="clearfix"></div>
                                         </div>
 
                                         <ul class="list-unstyled top_profiles scroll-view">
@@ -114,8 +114,8 @@
                                             </div>
                                         </li>
                                         <li class="media event">
-                                            <a class="pull-left border-green profile_thumb">
-                                            <i class="fa fa-user green"></i>
+                                            <a class="pull-left border-main-color profile_thumb">
+                                            <i class="fa fa-user main-color"></i>
                                             </a>
                                             <div class="media-body">
                                             <a class="title" href="#">Ms. Mary Jane</a>
@@ -123,7 +123,7 @@
                                             <p> <small>12 Sales Today</small>
                                             </p>
                                             </div>
-                                        </li>clearfix
+                                        </li>
                                         <li class="media event">
                                             <a class="pull-left border-blue profile_thumb">
                                             <i class="fa fa-user blue"></i>
@@ -147,8 +147,8 @@
                                             </div>
                                         </li>
                                         <li class="media event">
-                                            <a class="pull-left border-green profile_thumb">
-                                            <i class="fa fa-user green"></i>
+                                            <a class="pull-left border-main-color profile_thumb">
+                                            <i class="fa fa-user main-color"></i>
                                             </a>
                                             <div class="media-body">
                                             <a class="title" href="#">Ms. Mary Jane</a>
@@ -171,7 +171,7 @@
                         <div class="col-md-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2> Public Summary <small>Activity shares</small></h2>
+                                    <h2> Public Summary</h2>
                                     <ul class="nav navbar-right panel_toolbox">
                                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                                         <li class="dropdown">
@@ -191,12 +191,10 @@
                                         <div class="col-md-12">
                                             <div class="row" style="text-align: center;">
                                                 <div class="col-md-6">
-                                                    <canvas id="offersLocations" height="300" width="300" style="margin: 2px 5px 5px 0"></canvas>
-                                                    {{-- <h4 style="margin:0">  </h4> --}}
+                                                    <canvas id="offersLocations" height='350' style="margin: 2px 5px 5px 0"></canvas>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    {{-- <canvas id="gender" height="300" width="300" style="margin: 2px 5px 5px 0"></canvas> --}}
-                                                    {{-- <h4 style="margin:0"> Gender </h4> --}}
+                                                    <canvas id="echart_pie" height='350' style="margin: 2px 5px 5px 0"></canvas>
                                                 </div>
                                             </div>
                                         </div>
@@ -210,7 +208,7 @@
                             <div class="col-md-4">
                                 <div class="x_panel">
                                     <div class="x_title">
-                                        <h3>Providers</h3>
+                                        <h2>Providers</h2>
                                         <ul class="nav navbar-right panel_toolbox">
                                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                         </li>
@@ -229,7 +227,7 @@
                                         <div class="clearfix"></div>
                                     </div>
                                     <div class="x_content">
-                                        {{-- <canvas id="gender"></canvas> --}}
+                                        <canvas id="echart_sonar" height='350'></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -295,7 +293,7 @@
                         <div class="col-md-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Offers Summary <small>Dayliy Progress</small></h2>
+                                    <h2>Offers Summary </h2>
                                     <div class="filter">
                                     <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
                                         <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
@@ -323,7 +321,7 @@
                             <div class="col-md-4">
                                 <div class="x_panel">
                                 <div class="x_title">
-                                    <h3>Top 5 Providers <small>Sessions</small></h3>
+                                    <h3>Top 5 Providers</h3>
                                     <ul class="nav navbar-right panel_toolbox">
                                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                     </li>
@@ -399,7 +397,7 @@
                             <div class="col-md-4">
                                 <div class="x_panel">
                                 <div class="x_title">
-                                    <h3>Top Profiles <small>Sessions</small></h3>
+                                    <h3>Top Profiles</h3>
                                     <ul class="nav navbar-right panel_toolbox">
                                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                     </li>
@@ -475,7 +473,7 @@
                             <div class="col-md-4">
                                 <div class="x_panel">
                                 <div class="x_title">
-                                    <h3>Top Profiles <small>Sessions</small></h3>
+                                    <h3>Top Profiles </h3>
                                     <ul class="nav navbar-right panel_toolbox">
                                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                     </li>
@@ -957,6 +955,7 @@
             },
 
             tooltip: {
+                show:true,
                 backgroundColor: 'rgba(0,0,0,0.5)',
                 axisPointer: {
                     type: 'line',
@@ -1146,7 +1145,7 @@
             }
         };
     
-    	//echart Donut
+    //echart Donut
 			  
     if ($('#gender').length ){  
         
@@ -1237,7 +1236,7 @@
     } 
         
 
-			   //echart Pie Collapse
+    //echart Pie Collapse
 			  
     if ($('#echart_pie2').length ){ 
         
@@ -1304,8 +1303,102 @@
 
     } 
     
+    //echart Pie
+        
+    if ($('#echart_pie').length ){  
+        
+        var echartPie = echarts.init(document.getElementById('echart_pie'), theme);
 
-			   //echart Line
+        echartPie.setOption({
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            x: 'center',
+            y: 'bottom',
+            data: ['Direct Access', 'E-mail Marketing', 'Union Ad', 'Video Ads', 'Search Engine']
+        },
+        toolbox: {
+            show: true,
+            feature: {
+            magicType: {
+                show: true,
+                type: ['pie', 'funnel'],
+                option: {
+                funnel: {
+                    x: '25%',
+                    width: '50%',
+                    funnelAlign: 'left',
+                    max: 1548
+                }
+                }
+            },
+            restore: {
+                show: true,
+                title: "Restore"
+            },
+            saveAsImage: {
+                show: true,
+                title: "Save Image"
+            }
+            }
+        },
+        calculable: true,
+        series: [{
+            name: '访问来源',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '48%'],
+            data: [{
+            value: 335,
+            name: 'Direct Access'
+            }, {
+            value: 310,
+            name: 'E-mail Marketing'
+            }, {
+            value: 234,
+            name: 'Union Ad'
+            }, {
+            value: 135,
+            name: 'Video Ads'
+            }, {
+            value: 1548,
+            name: 'Search Engine'
+            }]
+        }]
+        });
+
+        var dataStyle = {
+        normal: {
+            label: {
+            show: false
+            },
+            labelLine: {
+            show: false
+            }
+        }
+        };
+
+        var placeHolderStyle = {
+        normal: {
+            color: 'rgba(0,0,0,0)',
+            label: {
+            show: false
+            },
+            labelLine: {
+            show: false
+            }
+        },
+        emphasis: {
+            color: 'rgba(0,0,0,0)'
+        }
+        };
+
+    } 
+			 
+
+    //echart Line
 			  
     if ($('#echart_line').length ){ 
         
@@ -1396,6 +1489,78 @@
         });
 
     } 
+
+
+    //echart Radar
+        
+    if ($('#echart_sonar').length ){ 
+        
+        var echartRadar = echarts.init(document.getElementById('echart_sonar'), theme);
+
+        echartRadar.setOption({
+        title: {
+            text: 'Budget vs spending',
+            subtext: 'Subtitle'
+        },
+            tooltip: {
+            trigger: 'item'
+        },
+        legend: {
+            orient: 'vertical',
+            x: 'right',
+            y: 'bottom',
+            data: ['Allocated Budget', 'Actual Spending']
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                restore: {
+                    show: true,
+                    title: "Restore"
+                },
+                saveAsImage: {
+                    show: true,
+                    title: "Save Image"
+                }
+            }
+        },
+        polar: [{
+            indicator: [{
+            text: 'Sales',
+            max: 6000
+            }, {
+            text: 'Administration',
+            max: 16000
+            }, {
+            text: 'Information Techology',
+            max: 30000
+            }, {
+            text: 'Customer Support',
+            max: 38000
+            }, {
+            text: 'Development',
+            max: 52000
+            }, {
+            text: 'Marketing',
+            max: 25000
+            }]
+        }],
+        calculable: true,
+        series: [{
+            name: 'Budget vs spending',
+            type: 'radar',
+            data: [{
+            value: [4300, 10000, 28000, 35000, 50000, 19000],
+            name: 'Allocated Budget'
+            }, {
+            value: [5000, 14000, 28000, 31000, 42000, 21000],
+            name: 'Actual Spending'
+            }]
+        }]
+        });
+
+    } 
+			  
 			 
 </script>
 @endsection

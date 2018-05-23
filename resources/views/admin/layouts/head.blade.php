@@ -23,7 +23,7 @@
     <!-- Custom Theme Style -->
     {!! Html::style(asset('admin/css/style.css')) !!}
     <!-- Custom RTL Theme Style -->
-    {{--  {!! Html::style(asset('admin/css/style-rtl.css')) !!}  --}}
+     {!! Html::style(asset('admin/css/style-rtl.css')) !!} 
 
     
   </head>

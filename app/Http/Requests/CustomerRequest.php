@@ -28,8 +28,8 @@ class CustomerRequest extends FormRequest
         return [
             'first_name'   => 'required|string|max:100|min:3', 
             'last_name'    => 'required|string|max: 100|min: 3', 
-            'phone_number' => 'required|string|max:14|min:10',
-            'phone_number' =>  Rule::unique('customers')->ignore($customer->id), #not work
+            // 'phone_number' => 'required|unique:customers,phone_number|string|max:14|min:10',Rule::unique('customers')->ignore($customer->id), #not work
+            'phone_number' => 'required|unique:customers,phone_number|string|max:14|min:10',Rule::unique('customers')->ignore($customer->id), #not work
             'image'        => 'image|mimes:png,jpg,jpeg|nullable|max:4096', 
             'gender'       => 'integer|boolean', 
         ];

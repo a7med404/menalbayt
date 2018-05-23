@@ -22,7 +22,11 @@
     | Here is where you can register admin routes for the application.
     |
 */
+Route::get('changeLocale/{locale}', function ($locale) {
+    App::setLocale($locale);
 
+    //
+})->name('change-locale');
 
 
 /**
