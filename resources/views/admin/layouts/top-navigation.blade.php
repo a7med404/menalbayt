@@ -13,16 +13,16 @@
                     <i class=" fa fa-angle-down"></i>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;"> Profile</a></li>
+                    <li><a href="javascript:;"> {{ __('home/sidebar.profile') }} </a></li>
                     <li>
                       <a href="javascript:;">
                         <span class="badge bg-red pull-right">50%</span>
-                        <span>Settings</span>
+                        <span>{{ __('home/sidebar.settings') }}</span>
                       </a>
                     </li>
                     <li><a href="javascript:;">Help</a></li>
-                    <li><a href="{{ route('change-locale', ['locale' => \Session::get('locale')]) }}">{{ \App::getLocale() }}</a></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                    <li><a href="{{ route('change-locale') }}">{{ \App::getLocale() }}</a></li>
+                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> {{ __('home/sidebar.log_out') }} </a></li>
                   </ul>
                 </li>
 
@@ -83,7 +83,7 @@
                     <li>
                       <div class="text-center">
                         <a>
-                          <strong>See All Alerts</strong>
+                          <strong>{{ __('home/sidebar.see_alerts') }}</strong>
                           <i class="fa fa-angle-right"></i>
                         </a>
                       </div>

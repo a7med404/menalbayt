@@ -1183,8 +1183,8 @@ span.right {
     background: #425567
 }
 .tile_count {
-    margin-bottom: 20px;
-    margin-top: 20px
+    margin-bottom: 15px;
+    margin-top: 15px
 }
 .tile_count .tile_stats_count {
     border-bottom: 1px solid #D9DEE4;
@@ -1402,6 +1402,10 @@ ul.messages li .message_wrapper blockquote {
     padding: 0px 10px;
     margin: 0;
     border-left: 5px solid #eee
+}
+.message_wrapper ul li a {
+    padding-left: 5px;
+    padding-right: 5px;
 }
 ul.user_data li {
     margin-bottom: 6px

@@ -239,6 +239,10 @@ ul.msg_list li a .time {
 .x_title .filter {
     float: left;
 }
+.x_content {
+    float: none;
+    float: right;
+}
 
 .x_content .top_profiles {
     padding: 0;
@@ -307,18 +311,36 @@ footer .pull-right {
     margin: 10px 0 0 15px;
 }
 
-
+/*
+ | dataTable
+*/
+.dataTables_wrapper .dataTables_length {
+    float: right;
+}
+.dataTables_wrapper .dataTables_filter {
+    float: left;
+    text-align: right;
+}
 
 
 table.dataTable thead th{
     text-align: right;
 }
+table.dataTable thead .sorting::after,
+table.dataTable thead .sorting_asc::after,
+table.dataTable thead .sorting_desc::after,
+table.dataTable thead .sorting_asc_disabled::after,
+table.dataTable thead .sorting_desc_disabled::after {
+    left: 8px;
+}
 
+.dataTables_wrapper .dataTables_paginate {
+    float: left;
+    text-align: right;
+}
 .breadcrumb li i {
     margin-left: 5px;
 }
-
-
 
 .media .date {
     margin-right: auto;
@@ -330,4 +352,42 @@ table.dataTable thead th{
 .custom-input .custom-lable {
     left: auto;
     right: 10px;
+}
+
+
+/*
+ | Repports Section
+*/
+.nav-tabs>li {
+    float: right;
+    margin-bottom: -1px;
+}
+
+ul.messages li .message_date {
+    float: left;
+    text-align: left;
+}
+ul.messages li .message_wrapper {
+    margin-right: 50px;
+    margin-left: 40px;
+}
+ul.messages li .message_wrapper blockquote {
+    border: none
+}
+ul.messages li .message_wrapper blockquote {
+    border-right: 5px solid #eee;
+}
+
+.message_wrapper ul li strong{
+    float: right;
+}
+
+/*
+    Boxes
+*/
+.tile_count .tile_stats_count::before {
+    left: auto;
+    border: none;
+    right: 0;
+    border-right: 2px solid #ADB2B5;
 }

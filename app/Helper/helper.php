@@ -1,4 +1,50 @@
 <?php
+function changeLocale()
+{
+	// if(\Session::has('locale'))
+    // {
+    //    \Session::put('locale', \App::getLocale());
+    // }
+
+
+    // App::setLocale($locale);
+    // $locale = App::getLocale();
+
+    // if (App::isLocale('en')) {
+    //     if(\Session::get('locale') == 'en'){
+    //         \Session::put('locale', 'ar');
+    //     }else {
+    //         \Session::put('locale', 'en');
+    //     }
+    // }
+    if (App::isLocale('en')) {
+        App::setLocale('ar');
+         \Session::put('locale', 'ar');
+    }else {
+    return "aaaaaaaaaaaa";
+        App::setLocale('en');
+         \Session::put('locale', 'en');
+    }
+
+    // $d = 'en';
+    // if(isset($_SESSION["defalut-lang"]) && $_SESSION['defalut-lang'] == "$d"){
+    //     $_SESSION['defalut-lang'] = 'ar'; 
+    // }else {
+    //     $_SESSION['defalut-lang'] = 'en'; 
+    // }
+
+
+    return \Session::get('locale');
+    // Session::set('locale', 'en');
+	// return Redirect::back();
+
+    // app()->setLocale(\Session::get('locale'));
+
+
+
+    // return $next($request);
+}
+
 function maleOrfemale(){
     return [
         '0' => 'Female',

@@ -59,9 +59,9 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-md-6 custom-input">
-                                {!! Form::textarea('job', null, ['id' => 'job', 'class' => " {{ $errors->has('job') ? ' is-invalid' : '' }}", 'value' => "{{ old('job') }}", 'required', 'autofocus']) !!}
-                                {!! Form::label('Jobs', 'job', ['class' => 'custom-lable']) !!}  
+                            <div class="col-md-3 custom-input has-data">
+                                {!! Form::label('job', 'Job', ['class' => 'custom-lable']) !!}
+                                {!! Form::select('job_id', getSelect('job'), null, ['id' => 'job', 'placeholder' => 'Select The Job', 'class' => "form-control {{ $errors->has('job_id') ? ' is-invalid' : '' }}", 'value' => "{{ old('job_id') }}", 'required']) !!}
                             </div>
                         </div>
                         <div class="form-group row">

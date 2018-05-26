@@ -255,7 +255,7 @@ $(function() {
 
 
 
-// $(function(parms) {
+
 //   $("html").niceScroll({
 //     cursorcolor: "#FFCC33",
 //     cursorwidth: "3px",
@@ -264,4 +264,3 @@ $(function() {
 //     zindex: 88,
 //     scrollspeed: 50
 //   });
-// });

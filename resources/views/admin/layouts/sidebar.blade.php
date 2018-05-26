@@ -12,7 +12,7 @@
                 <img src="{{ asset('admin/images/user.png') }}" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
-                <span>Welcome</span>
+                <span>{{ __('home/sidebar.welcome') }}</span>
                 <h2>a7med404</h2>
               </div>
             </div>
@@ -23,73 +23,63 @@
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
-                <h3>General</h3>
+                <h3>{{ __('home/sidebar.app_settings') }}</h3>
                 <ul class="nav side-menu">
-                  <li><a href="{{ url('cpanel') }}"><i class="fa fa-dashboard"></i> DASHBOARD <span class="fa fa-home"></span></a> </li>
-                  <li><a><i class="fa fa-edit"></i> Customers <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="{{ url('cpanel') }}"><i class="fa fa-dashboard"></i> {{ __('home/sidebar.dashboard') }} <span class="fa fa-home"></span></a> </li>
+                  <li><a><i class="fa fa-edit"></i> {{ __('home/sidebar.customers') }} <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{ route('customers.index') }}">All Customers</a></li>
-                      <li><a href="{{ route('customers.create') }}">Add Customer</a></li>
-                      <li><a href="{{ route('customers.repport') }}">Customer  Repports</a></li>
+                      <li><a href="{{ route('customers.index') }}">{{ __('home/sidebar.all_customers') }}</a></li>
+                      <li><a href="{{ route('customers.create') }}">{{ __('home/sidebar.add_customer') }}</a></li>
+                      <li><a href="{{ route('customers.repport') }}">{{ __('home/sidebar.customers_repports') }}</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-sitemap"></i> Departments <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-users"></i> {{ __('home/sidebar.departments') }} <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{ route('departments.index') }}">All Departments</a></li>
-                      <li><a href="{{ route('departments.create') }}">Add Department</a></li>
-                      <li><a href="{{ route('departments.repport') }}">Department  Repports</a></li>
+                      <li><a href="{{ route('departments.index') }}">{{ __('home/sidebar.all_departments') }}</a></li>
+                      <li><a href="{{ route('departments.create') }}">{{ __('home/sidebar.add_department') }}</a></li>
+                      <li><a href="{{ route('departments.repport') }}">{{ __('home/sidebar.departments_repports') }}</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-tags"></i> Jobs <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-tags"></i> {{ __('home/sidebar.jobs') }} <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{ route('jobs.index') }}">All Jobs</a></li>
-                      <li><a href="{{ route('jobs.create') }}">Add Job</a></li>
-                      <li><a href="{{ route('jobs.repport') }}">Job  Repports</a></li>
+                      <li><a href="{{ route('jobs.index') }}">{{ __('home/sidebar.all_jobs') }}</a></li>
+                      <li><a href="{{ route('jobs.create') }}">{{ __('home/sidebar.add_job') }}</a></li>
+                      <li><a href="{{ route('jobs.repport') }}">{{ __('home/sidebar.jobs_repports') }}</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-wrench"></i> Offers <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-tasks"></i> {{ __('home/sidebar.offers') }} <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{ route('offers.index') }}">All Offers</a></li>
-                      <li><a href="{{ route('offers.create') }}">Add Offer</a></li>
-                      <li><a href="{{ route('offers.repport') }}">Offers  Repports</a></li>
+                      <li><a href="{{ route('offers.index') }}">{{ __('home/sidebar.all_offers') }}</a></li>
+                      <li><a href="{{ route('offers.create') }}">{{ __('home/sidebar.add_offer') }}</a></li>
+                      <li><a href="{{ route('offers.repport') }}">{{ __('home/sidebar.offers_repports') }}</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-wrench"></i> Provider <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-puzzle-piece"></i> {{ __('home/sidebar.providers') }} <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{ route('providers.index') }}">All Provider</a></li>
-                      <li><a href="{{ route('providers.create') }}">Add Provider</a></li>
-                      <li><a href="{{ route('providers.repport') }}">Providers  Repports</a></li>
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="chartjs.html">Chart JS</a></li>
+                      <li><a href="{{ route('providers.index') }}">{{ __('home/sidebar.all_providers') }}</a></li>
+                      <li><a href="{{ route('providers.create') }}">{{ __('home/sidebar.add_provider') }}</a></li>
+                      <li><a href="{{ route('providers.repport') }}">{{ __('home/sidebar.providers_repports') }}</a></li>
                     </ul>
                   </li>
                 </ul>
               </div>
               <div class="menu_section">
-                <h3>Live On</h3>
+                <h3>{{ __('home/sidebar.site_settings') }}</h3>
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-sitemap"></i> Multi Menu <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="page_403.html">403 Error</a></li>
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-sitemap"></i> Multilevel Menu <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                        <li><a href="#level1_1">Level One</a>
-                        <li><a>Level One<span class="fa fa-chevron-down"></span></a>
+                        <li><a href="#level1_1"> One</a>
+                        <li><a> One<span class="fa fa-chevron-down"></span></a>
                           <ul class="nav child_menu">
-                            <li class="sub_menu"><a href="level2.html">Level Two</a>
+                            <li class="sub_menu"><a href="level2.html"> Two</a>
                             </li>
-                            <li><a href="#level2_1">Level Two</a>
+                            <li><a href="#level2_1"> Two</a>
                             </li>
-                            <li><a href="#level2_2">Level Two</a>
+                            <li><a href="#level2_2"> Two</a>
                             </li>
                           </ul>
                         </li>
-                        <li><a href="#level1_2">Level One</a>
+                        <li><a href="#level1_2"> One</a>
                         </li>
                     </ul>
                   </li> 

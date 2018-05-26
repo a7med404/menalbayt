@@ -22,34 +22,34 @@
                         <!-- top tiles -->
                         <div class="row tile_count">
                             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                                <span class="count_top"><i class="fa fa-user"></i> Total Customers</span>
+                                <span class="count_top"><i class="fa fa-users"></i> {{ __('home/home.total_customers') }} </span>
                                 <div class="count">{{ $customerMale->count() + $customerFemale->count() }}</div>
-                                <span class="count_bottom"><i class="main-color">4% </i> From last Week</span>
+                                <span class="count_bottom"><i class="main-color">4% </i> {{ __('home/home.from_last_week') }}</span>
                             </div>
                             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                                <span class="count_top"><i class="fa fa-user"></i> Total New Offer</span>
+                                <span class="count_top"><i class="fa fa-tasks"></i> {{ __('home/home.total_new_offers') }} </span>
                                 <div class="count main-color">{{ $offernNew->count() }}</div>
-                                <span class="count_bottom"><i class="main-color"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+                                <span class="count_bottom"><i class="main-color"><i class="fa fa-sort-asc"></i>34% </i> {{ __('home/home.from_last_week') }}</span>
                             </div>
                             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                                <span class="count_top"><i class="fa fa-user"></i>  Total Done Offer</span>
+                                <span class="count_top"><i class="fa fa-check"></i> {{ __('home/home.total_done_offers') }} </span>
                                 <div class="count">{{ $offernDone->count() }}</div>
-                                <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span>
+                                <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> {{ __('home/home.from_last_week') }}</span>
                             </div>
                             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                                 <span class="count_top"><i class="fa fa-clock-o"></i> Average Time</span>
                                 <div class="count">123.50</div>
-                                <span class="count_bottom"><i class="main-color"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
+                                <span class="count_bottom"><i class="main-color"><i class="fa fa-sort-asc"></i>3% </i> {{ __('home/home.from_last_week') }}</span>
                             </div>
                             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                                 <span class="count_top"><i class="fa fa-user"></i> Total Collections</span>
                                 <div class="count">2,315</div>
-                                <span class="count_bottom"><i class="main-color"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+                                <span class="count_bottom"><i class="main-color"><i class="fa fa-sort-asc"></i>34% </i> {{ __('home/home.from_last_week') }}</span>
                             </div>
                             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                                 <span class="count_top"><i class="fa fa-user"></i> Total Connections</span>
                                 <div class="count">7,325</div>
-                                <span class="count_bottom"><i class="main-color"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+                                <span class="count_bottom"><i class="main-color"><i class="fa fa-sort-asc"></i>34% </i> {{ __('home/home.from_last_week') }}</span>
                             </div>
                         </div>
                         <!-- /top tiles -->
@@ -61,7 +61,7 @@
                         <div class="col-md-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Offers Summary </h2>
+                                    <h2> {{ __('home/home.offers_summary') }} </h2>
                                     <div class="filter">
                                     <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
                                         <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
@@ -82,7 +82,7 @@
                                     <div class="col-md-3 col-sm-12 col-xs-12">
                                     <div class="float">
                                         <div class="x_title">
-                                            <h2>Top Offers</h2>
+                                            <h2> {{ __('home/home.top_offers') }} </h2>
                                             <ul class="nav navbar-right panel_toolbox">
                                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                                 </li>
@@ -171,7 +171,7 @@
                         <div class="col-md-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2> Public Summary</h2>
+                                    <h2> {{ __('home/home.public_summary') }} </h2>
                                     <ul class="nav navbar-right panel_toolbox">
                                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                                         <li class="dropdown">
@@ -557,11 +557,11 @@
 
         title : {
             show: true,
-            text: 'Offers Repports', 
+            text: '{{ __('home/home.offer_repports') }}', 
             textStyle:{
             color: '#73879c',
             },
-            subtext: 'Dayliy Done Offers And New',
+            subtext: '{{ __('home/home.dayliy_offer') }}',
             padding: [6, 10],
             itemGap: 10,
             left: 10,
@@ -579,7 +579,7 @@
             }
         },
         legend: {
-            data:['New Offers','Done Offers'],
+            data:['{{ __('home/home.new_offer') }}','{{ __('home/home.done_offer') }}'],
             type: 'scroll', // scroll, plain  Scrollable legend. It helps when too many legend items needed to be shown.
             show: true,
             orient : 'horizontal', // vertical  default => horizontal
@@ -595,14 +595,14 @@
             },
             data: [
             {
-                name: 'New Offers', //Name of legend, which should be the name value of a certain series. If it is a pie chart, legend name can also be the name of a single data item // compulsorily set icon as a circle
+                name: '{{ __('home/home.new_offer') }}', //Name of legend, which should be the name value of a certain series. If it is a pie chart, legend name can also be the name of a single data item // compulsorily set icon as a circle
                 icon: 'roundRect', // Icon types provided by ECharts includes 'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow'
                 textStyle: {
                 color: '#ffcc33'
                 }
             },
             {
-                name: 'Done Offers',
+                name: '{{ __('home/home.done_offer') }}',
                 icon: 'pin',
                 textStyle: {
                 color: '#2f4554'
@@ -785,7 +785,7 @@
         ],
         series : [
         {
-            name:'New Offers',
+            name:'{{ __('home/home.new_offer') }}',
             type:'bar',
             color: ['#ffcc33'],
             data:[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3],
@@ -805,7 +805,7 @@
             }
         },
         {
-            name:'Done Offers',
+            name:'{{ __('home/home.done_offer') }}',
             type:'bar',
             color: ['#2f4554'],
             data:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3], 
@@ -878,7 +878,7 @@
         },
         title: {
             show:true,
-            text: 'Offers Locations',
+            text: '{{ __('home/home.offers_locations') }}',
             left: 10,
         },
         toolbox: {

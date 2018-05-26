@@ -14,8 +14,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        
         Schema::defaultStringLength(191);
         Schema::enableForeignKeyConstraints();
+
+        if(!\Session::has('locale'))
+        {
+        \Session::put('locale', \App::getLocale());
+        }
 
     }
 
