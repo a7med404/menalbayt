@@ -35,6 +35,7 @@
     <!-- fastselect.min.js -->
     {!! Html::script(asset('admin/js/fastselect.min.js')) !!}
     <script>
+        
         $(document).ready(function() {
             /* 
                 For iCheck =====================================>
@@ -45,7 +46,7 @@
                 increaseArea:"20%" // optional
             });
         });
-	   
+	   $('.multipleSelect').fastselect();
         
     </script>
 @endsection

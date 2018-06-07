@@ -20,7 +20,7 @@ class testController extends Controller
         // $data =  json_decode($customers, JSON_PRETTY_PRINT);
         // return $data;
 
-        return view('test2');
+        return view('test');
         
         
     }

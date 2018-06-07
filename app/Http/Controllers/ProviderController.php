@@ -113,7 +113,7 @@ class ProviderController extends Controller
         
         $allInfo = array_merge($providerInfo->toArray(), $profileInfo->toArray());
         $allInfoCollect = collect($allInfo);
-        return view('admin.providers.edit', ['allInfoCollect' => $allInfoCollect]);
+        return view('admin.providers.edit', ['allInfoCollect' => $allInfoCollect, 'providerInfo' => $providerInfo]);
     }
 
     /**

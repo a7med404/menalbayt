@@ -51,11 +51,18 @@
                                 {!! Form::radio('gender', 0, null, ['id' => 'gender', 'placeholder' => 'gender', 'class' => " {{ $errors->has('gender') ? ' is-invalid' : '' }}", 'value' => "{{ old('gender') }}", 'required']) !!} <span>Female</span> 
                             </div>
                         </div>
+                        {{-- {{dd($providerInfo->profile->department->id)}} --}}
 
-                        <div class="form-group row">
+                        <div class="form-group row"> 
                             <div class="col-md-3 custom-input has-data">
                                 {!! Form::label('department', 'Department', ['class' => 'custom-lable']) !!}
-                                {!! Form::select('department_id', getSelect('department'), null, ['id' => 'department', 'placeholder' => 'Select The Department', 'class' => "form-control {{ $errors->has('department_id') ? ' is-invalid' : '' }}", 'value' => "{{ old('department_id') }}", 'required']) !!}
+                                <select class="form-control" id="department">
+                                    <option value="">Select The Department</option>
+                                    @foreach(\App\Models\department::all() as $dept)
+                                    <option value="{{ $dept->id }}" <?= $providerInfo->profile->department->id == $dept->id > 'selected' : '' > {{ $dept->name }} </option>
+                                    @endforeach
+                                </select>
+                                {{-- {!! Form::select('department_id', getSelect('department'), null, ['id' => 'department', 'placeholder' => 'Select The Department', 'class' => "form-control {{ $errors->has('department_id') ? ' is-invalid' : '' }}", 'value' => "{{ old('department_id') }}", 'required']) !!} --}}
                             </div>
                         </div>
                         <div class="form-group row">

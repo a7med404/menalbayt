@@ -23,7 +23,7 @@
                         <!-- End  Breadcrumb -->
                        
                         {!! Form::model($allInfoCollect, ['route' => ['providers.update', $allInfoCollect['id']], 'method' => "PATCH", 'class' => 'form', 'files' => true]) !!}
-                        @include('admin.providers.form')
+                        @include('admin.providers.form', ['providerInfo' => $providerInfo])
                         {!! Form::close() !!}
 
                     @endsection

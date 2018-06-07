@@ -12,6 +12,8 @@
 
     <!-- jQuery -->
     {!! Html::script(asset('admin/js/jquery/jquery.min.js')) !!}
+    <!-- jquery-ui.min.js -->
+    {!! Html::script(asset('admin/js/jquery/jquery-ui.min.js')) !!}
     <!-- Bootstrap -->
     {!! Html::script(asset('admin/js/bootstrap/bootstrap.min.js')) !!}
     <!-- nicescroll -->
