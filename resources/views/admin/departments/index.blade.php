@@ -74,8 +74,8 @@
                                             <td><a href="{{ route('departments.show', ['id' => $department->id]) }}" class="badge bg-main-color">{{ $department->profiles->count() }}</td></a>
                                             <td>{{ $department->created_at }}</td>
                                             <td>
-                                                <a class="btn btn-info btn-xs"   href="{{ route('departments.edit', ['id' => $department->id]) }}">Edit</a>
-                                                <a class="btn btn-danger btn-xs" href="{{ url('cpanel/department/'.$department->id.'/delete') }}">Delete</a>
+                                                <a class="btn btn-info btn-xs"   href="{{ route('departments.edit',  ['id' => $department->id]) }}">Edit</a>
+                                                <a class="btn btn-danger btn-xs" href="{{ route('departments.delete',['id' => $department->id]) }}">Delete</a>
                                             </td>
                                         </tr>
                                     @endforeach

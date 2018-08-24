@@ -49,6 +49,7 @@ Route::get('cpanel/changeLocale', function () {
         //     return "fffffffffff";
         // })->name('customers.rep');
         Route::any('search', 'CustomerController@searchForCustmoer')->name('search');
+        Route::get('customers/delete/{id}', 'CustomerController@destroy')->name('customers.delete');
         
     });
     
@@ -61,10 +62,8 @@ Route::get('cpanel/changeLocale', function () {
  */
     Route::group(['prefix' => 'cpanel'], function() {
         Route::resource('departments', 'DepartmentController');
-        Route::get('departments/repport', function(){
-            return "fffffffffff";
-        })->name('departments.repport');
-        // Route::get('departments/repport', 'DepartmentController@repport')->name('departments.repport');
+        Route::get('departments/delete/{id}', 'DepartmentController@destroy')->name('departments.delete');
+        Route::get('departments/repport', 'DepartmentController@repport')->name('departments.repport');
     });
 
 
@@ -75,7 +74,8 @@ Route::get('cpanel/changeLocale', function () {
 
     Route::group(['prefix' => 'cpanel'], function() {
         Route::resource('jobs', 'JobController');
-        Route::get('jobs/repport', 'JobController@repport')->name('jobs.repport');        
+        Route::get('jobs/repport', 'JobController@repport')->name('jobs.repport');
+        Route::get('jobs/delete/{id}', 'JobController@destroy')->name('jobs.delete');        
     });
 
 
@@ -112,6 +112,8 @@ Route::get('cpanel/changeLocale', function () {
     Route::group(['prefix' => 'cpanel'], function() {
         Route::resource('providers', 'ProviderController');
         Route::get('providers/repport', 'ProviderController@repport')->name('providers.repport');                        
+        Route::get('providers/selectJson', 'ProviderController@selectJson')->name('providers.selectJson');                        
+                      
     });
 
 /**

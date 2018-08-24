@@ -22,6 +22,8 @@
     {!! Html::script(asset('admin/js/validate.min.js')) !!}
     <!-- Toaster JavaScript -->
     {!! Html::script(asset('admin/js/toastr.min.js')) !!}
+    <!-- sweetalert JavaScript -->
+    {!! Html::script(asset('admin/js/sweetalert.min.js')) !!}
     <!-- CharJs -->
     {!! Html::script(asset('admin/js/Chart.min.js')) !!}
 

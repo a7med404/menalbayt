@@ -112,9 +112,9 @@ class DepartmentController extends Controller
      */
     public function destroy($id)
     {
+        // dd($id);
         $departmentForDelete = department::findOrFail($id);
         $departmentForDelete->delete();
         Session::flash('flash_massage_type', 2);
-        return redirect()->back()->withFlashMassage('Department Deleted Susscefully');
+        return redirect()->back()->withFlashMassage('Department Deleted Susscefully');    }
     }
-}

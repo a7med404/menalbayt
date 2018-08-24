@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\provider;
+use \App\Models\job;
 use \App\Models\profile;
 use \App\Models\profilesJobs;
 use App\Helper\UploadFile;
@@ -199,5 +200,29 @@ class ProviderController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+        /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function selectJson()
+    {
+        Header("Content-Type: application/json"); 
+        $id = 1;
+        $jsonArray = [];
+        $providerInfo = provider::findOrFail($id);
+        $profileInfo = profile::findOrFail($id);
+        $jobsInfo = job::findOrFail($profileInfo);
+        
+        $allInfo = array_merge($providerInfo->toArray(), $profileInfo->toArray(), $jobsInfo->toArray());
+        $allInfoCollect = collect($allInfo);
+
+        $jsonArray[] = $allInfoCollect->toJson();
+        return $jsonArray;
+        // return view('admin.providers.edit', ['allInfoCollect' => $allInfoCollect, 'providerInfo' => $providerInfo]);
     }
 }

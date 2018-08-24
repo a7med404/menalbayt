@@ -50,7 +50,7 @@ class JobController extends Controller
         ];
         $job->create($data);
         Session::flash('flash_massage_type', 1);
-        return redirect('cpanel/jobs')->withFlashMassage('Job AddDepartmented Susscefully');
+        return redirect('cpanel/jobs')->withFlashMassage('Job Addjobed Susscefully');
     }
 
     /**
@@ -112,6 +112,9 @@ class JobController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $jobForjobDelete = Job::findOrFail($id);
+        $jobForjobDelete->delete();
+        Session::flash('flash_massage_type', 2);
+        return redirect()->back()->withFlashMassage('job Deleted Susscefully');
     }
 }

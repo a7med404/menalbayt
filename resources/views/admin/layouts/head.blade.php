@@ -19,11 +19,13 @@
     {!! Html::style(asset('admin/css/font-awesome.min.css')) !!}
     <!-- Font Toaster -->
     {!! Html::style(asset('admin/css/toastr.min.css')) !!}
+    <!-- Font sweetalert -->
+    {!! Html::style(asset('admin/css/sweetalert.css')) !!}
     @yield('header')
     <!-- Custom Theme Style -->
     {!! Html::style(asset('admin/css/style.css')) !!}
     <!-- Custom RTL Theme Style -->
-     {!! Html::style(asset('admin/css/style-rtl.css')) !!} 
+     {{-- {!! Html::style(asset('admin/css/style-rtl.css')) !!}  --}}
 
     
   </head>

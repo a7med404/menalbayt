@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
     {
         
         Schema::defaultStringLength(191);
-        Schema::enableForeignKeyConstraints();
+        // Schema::enableForeignKeyConstraints();
 
         if(!\Session::has('locale'))
         {

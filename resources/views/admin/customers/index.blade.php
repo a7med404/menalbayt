@@ -72,9 +72,9 @@
                                         <td><a href="{{ route('customers.show', ['id' => $customer->id]) }}" class="badge bg-main-color">{{ $customer->offers->count() }}</td>
                                         <td>
                                             <div class="btn-group">
-                                                <a class="btn btn-default btn-sm" href="{{ route('customers.show', ['id' => $customer->id]) }}"><i class="fa fa-arrows-alt"></i></a>
-                                                <a class="btn btn-info    btn-sm" href="{{ route('customers.edit', ['id' => $customer->id]) }}"><i class="fa fa-pencil"></i></a>
-                                                <a class="btn btn-danger  btn-sm" href="{{ url('cpanel/customer/'.$customer->id.'/delete') }}"> <i class="fa fa-times"></i></a>
+                                                <a class="btn btn-default btn-sm" href="{{ route('customers.show',  ['id' => $customer->id]) }}"><i class="fa fa-arrows-alt"></i></a>
+                                                <a class="btn btn-info    btn-sm" href="{{ route('customers.edit',  ['id' => $customer->id]) }}"><i class="fa fa-pencil"></i></a>
+                                                <a class="btn btn-danger  btn-sm confirm" href="{{ route('customers.delete',['id' => $customer->id]) }}"> <i class="fa fa-times"></i></a>
                                             </div>
                                         </td>
                                     </tr>
@@ -102,12 +102,12 @@
         $('#table_id').DataTable({
             //processing: true,
             //serverSide: true,
-            "columnDefs":[
-                {
-                    "targets":[1, 3, 7],
-                    "orderable":false,
-                },
-            ],
+            // "columnDefs":[
+            //     {
+            //         "targets":[1, 3, 7],
+            //         "orderable":false,
+            //     },
+            // ],
             "stateSave": false,
             "responsive": true,
             "order": [[0, 'desc']],

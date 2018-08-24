@@ -73,7 +73,7 @@
                                             <td><a href="{{ route('jobs.show', ['id' => $job->id]) }}" class="badge bg-main-color">{{ $job->profiles->count() }}</td></a>
                                             <td>
                                                 <a class="btn btn-info btn-xs"   href="{{ route('jobs.edit', ['id' => $job->id]) }}">Edit</a>
-                                                <a class="btn btn-danger btn-xs" href="{{ url('cpanel/job/'.$job->id.'/delete') }}">Delete</a>
+                                                <a class="btn btn-danger btn-xs confirm" href="{{ route('jobs.delete', ['id' => $job->id]) }}">Delete</a>
                                             </td>
                                         </tr>
                                     @endforeach

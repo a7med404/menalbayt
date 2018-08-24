@@ -30,7 +30,7 @@ class CreateOffersTable extends Migration
             $table->integer('provider_id')->unsigned()->nallable();
             $table->foreign('provider_id')->references('id')->on('providers');
             $table->integer('customer_id')->unsigned();
-            $table->foreign('customer_id')->references('id')->on('customers');
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->timestamps();
             $table->collection = 'utf8_general_ci';
         });

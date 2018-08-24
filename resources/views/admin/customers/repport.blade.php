@@ -214,7 +214,7 @@
 
 
 
-                    @endsection
+                    @endsectionrefStyle
     
 @section('footer')
 @endsection

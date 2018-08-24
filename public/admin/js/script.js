@@ -256,6 +256,47 @@ $(function() {
 
 
 
+      /*Confirmtion Massege In Press Button Delete*/
+      
+    //   $('.confirm').click(function(){
+  
+    //     swal({
+    //     title: 'Are you sure?',
+    //     text: "It will permanently deleted !",
+    //     type: 'warning',
+    //     showCancelButton: true,
+    //     confirmButtonColor: '#3085d6',
+    //     cancelButtonColor: '#d33',
+    //     confirmButtonText: 'Yes, delete it!'
+    //   }).then(function() {
+    //     swal(
+    //       'Deleted!',
+    //       'Your file has been deleted.',
+    //       'success'
+    //     );
+    //   })
+        
+    //   })
+
+	$('.confirm').click(function(){
+		return confirm('Are You Sure Do You Want Delete This ?');
+
+      
+
+    //     return swal(
+    //         {
+    //             title: "Are you Suer?",
+    //             text: "You will not be able to recover this data",
+    //             type:"warning",
+    //             showCancelButton: true,
+    //             confirmButtonColor:"#DD6B55",
+    //             cancelButtonColor:"#D33",
+    //             confirmButtonText: "Yes, Delete it!"
+    //         }).then(function(){
+                
+    //         })
+	});
+
 //   $("html").niceScroll({
 //     cursorcolor: "#FFCC33",
 //     cursorwidth: "3px",
