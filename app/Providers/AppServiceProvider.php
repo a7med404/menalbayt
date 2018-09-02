@@ -18,11 +18,24 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
         // Schema::enableForeignKeyConstraints();
 
-        if(!\Session::has('locale'))
-        {
-        \Session::put('locale', \App::getLocale());
-        }
+        app()->singleton('lang', function(){
 
+            if(session()->has('lang'))
+            {
+                return session()->get('lang');
+            }else{
+                return \App::getLocale();
+            }
+
+        });
+
+        $new5Providers = \App\Models\provider::where('account_status', '0')->orderBy('id', 'desc')->limit(5)->get();
+        \View::share('new5Providers', $new5Providers);
+
+
+        $newCountProviders = \App\Models\provider::where('account_status', '0')->orderBy('id', 'desc')->get();
+        \View::share('newCountProviders', $newCountProviders);
+        
     }
 
     /**

@@ -74,7 +74,7 @@
                                             <td><a href="{{ route('departments.show', ['id' => $provider->profile->department->id]) }}" class="badge bg-main-color">{{ $provider->profile->department->name }}</td></a>
                                             <td>
                                                 <a class="btn btn-info btn-xs"   href="{{ route('providers.edit', ['id' => $provider->id]) }}">Edit</a>
-                                                <a class="btn btn-danger btn-xs" href="{{ url('cpanel/provider/'.$provider->id.'/delete') }}">Delete</a>
+                                                <a class="btn btn-danger btn-xs" href="{{ route('providers.delete',['id' => $provider->id]) }}">Delete</a>
                                             </td>
                                         </tr>
                                     @endforeach

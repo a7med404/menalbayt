@@ -4,6 +4,7 @@ use Faker\Generator as Faker;
 
 $factory->define(\App\Models\profile::class, function (Faker $faker) {
     return [
+        // 'id' => 12,//$faker->numberBetween($min = 10, $max = 20),
         'first_name'        => $faker->firstName(10),
         'last_name'         => $faker->lastName(10),
         'username'          => $faker->name(10),

@@ -2,23 +2,20 @@
 @include('admin.layouts.body-start')
 @include('admin.layouts.page-start')
 
-@section('title')
-Login
-@endsection
-
  <!-- page content -->
  <div class="container" role="main">
     <div class="">
       <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
 
-              <form method="POST" class="login-form" action="{{ route('login') }}"> 
+              <form class="login-form" action="{{ route('login') }}"> 
                 @csrf       
                 <div class="login-wrap">
+                        {{ __('Login') }}
                     <p class="login-img"><i class="fa fa-unlock"></i></p>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                      <input type="text" name="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" autofocus>
+                      <input type="text" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Username" autofocus>
                         {{-- @if ($errors->has('email'))
                             <span class="invalid-feedback">
                                 <strong>{{ $errors->first('email') }}</strong>
@@ -27,7 +24,7 @@ Login
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                        <input type="password" name="password" class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ __('Password') }}">
+                        <input type="password" class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="Password">
                         @if ($errors->has('password'))
                             <span class="invalid-feedback">
                                 <strong>{{ $errors->first('password') }}</strong>

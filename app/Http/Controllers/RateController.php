@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Helper\UploadFile;
+use \App\Models\rate;
+
 
 class RateController extends Controller
 {
@@ -81,5 +83,40 @@ class RateController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+
+
+
+
+    /**rate
+     * @param
+     */
+
+    public function getDataJson(rate $rate)
+    {
+        $provider_id = $_GET['provider_id'];
+        header('Content-Type: application/josn');
+        $rate = rate::where('provider_id', $provider_id)->get();
+
+        return $rate;
+    }
+
+
+    /**
+     * @param
+     */
+
+    public function setDataJson(rate $rate)
+    {
+        # value	customer_id	provider_id
+        $data = [
+            'customer_id'   => $_POST['customer_id'],
+            'provider_id'   => $_POST['provider_id'],
+            'value'         => $_POST['value'],
+        ]; 
+        $rateDone =  $rate->updateOrCreate($data);
+        return $rateDone == true ? "1" : "0";
     }
 }

@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class rate extends Model
 {
-    # 	id 	vaule 	customer_id 	provider_id 
+    # 	id 	value 	customer_id 	provider_id 
     protected $table = "rates";
     protected $fillable = [
-        'id', 'vaule', 'customer_id', 'provider_id',
+        'id', 'value', 'customer_id', 'provider_id',
     ];
 }

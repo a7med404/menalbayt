@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \App\Models\job;
+use \App\Models\offersjob;
 use App\Helper\UploadFile;
 use \App\Http\Requests\jobRequest;
 use \Session;
@@ -117,4 +118,27 @@ class JobController extends Controller
         Session::flash('flash_massage_type', 2);
         return redirect()->back()->withFlashMassage('job Deleted Susscefully');
     }
+
+
+
+
+    /**
+     * @param
+     */
+
+    public function getDataAllJobsJson()
+    { 
+        header('Content-Type: application/josn');
+        $jobs = job::orderBy('id', 'desc')->select('jobs.id', 'jobs.name')->get();
+        if($jobs == "[]"){
+            return "No Data To show...";
+        }
+        return $jobs;
+    }
+
+
+
+
+    
+
 }

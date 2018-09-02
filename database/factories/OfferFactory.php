@@ -13,7 +13,7 @@ $factory->define(\App\Models\offer::class, function (Faker $faker) {
         'offer_end_date'   => now(),
         'latitude'         => $faker->latitude($min        = -90, $max                                   = 90),
         'longitude'        => $faker->longitude($min       = -180, $max                                  = 180),
-        'level'            => 2,
+        'level'            => 4,
         'status'           => 1,
         'department_id'    => 1,
         'customer_id'      => 1,

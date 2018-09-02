@@ -11,7 +11,7 @@
     <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
     <link rel="icon" href="{{ asset('admin/images/visa.png') }}" type="image/ico" />
 
-    <title>Men Albayt!| | @yield('title') </title>
+    <title>Men Albayt! || @yield('title') </title>
 
     <!-- Bootstrap -->
     {!! Html::style(asset('admin/css/bootstrap.min.css')) !!}
@@ -26,6 +26,5 @@
     {!! Html::style(asset('admin/css/style.css')) !!}
     <!-- Custom RTL Theme Style -->
      {{-- {!! Html::style(asset('admin/css/style-rtl.css')) !!}  --}}
-
     
   </head>

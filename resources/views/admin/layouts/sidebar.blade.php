@@ -1,7 +1,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="{{ url('/cpanel') }}" class="site_title"><i class="fa fa-anchor"></i> <span>Men Albayt!</span></a>
+              <a href="{{ url('/cpanel') }}" class="site_title"><i class="fa fa-tasks"> </i>  <span>Men Albayt!</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -13,7 +13,7 @@
               </div>
               <div class="profile_info">
                 <span>{{ __('home/sidebar.welcome') }}</span>
-                <h2>a7med404</h2>
+                <h2>{{ \Auth::user()->name}}</h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -66,20 +66,15 @@
               <div class="menu_section">
                 <h3>{{ __('home/sidebar.site_settings') }}</h3>
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-sitemap"></i> Multi Menu <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-sitemap"></i> {{ __('home/sidebar.admin_area') }} <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="#level1_1"> One</a>
-                        <li><a> One<span class="fa fa-chevron-down"></span></a>
-                          <ul class="nav child_menu">
-                            <li class="sub_menu"><a href="level2.html"> Two</a>
-                            </li>
-                            <li><a href="#level2_1"> Two</a>
-                            </li>
-                            <li><a href="#level2_2"> Two</a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li><a href="#level1_2"> One</a>
+                          <li><a><i class="fa fa-users"></i> {{ __('home/sidebar.users') }} <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                              <li><a href="{{ route('users.index') }}">{{ __('home/sidebar.all_users') }}</a></li>
+                              <li><a href="{{ route('users.create') }}">{{ __('home/sidebar.add_user') }}</a></li>
+                            </ul>
+                          </li>
+                        {{-- <li><a href="#level1_2"> One</a> --}}
                         </li>
                     </ul>
                   </li> 

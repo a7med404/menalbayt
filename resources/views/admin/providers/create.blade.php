@@ -16,7 +16,7 @@
                             <div class="col-lg-12  float-right">
                                 <ol class="breadcrumb">
                                     <li><i class="fa fa-home"></i><a href="{{ url('\cpanel') }}">HOME</a></li>
-                                    <li><i class="fa fa-users"></i><a href="{{ url('\cpanel\customers') }}">All Providers</a></li>							  	
+                                    <li><i class="fa fa-users"></i><a href="{{ url('\cpanel\providers') }}">All Providers</a></li>							  	
                                     <li><i class="fa fa-user"></i>Add New Offer</li>						  	
                                 </ol>
                             </div><!-- /.col-lg-12 -->

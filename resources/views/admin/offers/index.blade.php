@@ -76,7 +76,7 @@
                                             <td><a href="{{ route('offers.show', ['id' => $offer->id]) }}" class="badge bg-main-color">{{ $offer->customer->first_name }}</td></a>
                                             <td>
                                                 <a class="btn btn-info btn-xs"   href="{{ route('offers.edit', ['id' => $offer->id]) }}">Edit</a>
-                                                <a class="btn btn-danger btn-xs" href="{{ url('cpanel/offer/'.$offer->id.'/delete') }}">Delete</a>
+                                                <a class="btn btn-danger btn-xs" href="{{ route('offers.delete', ['id' => $offer->id]) }}">Delete</a>
                                             </td>
                                         </tr>
                                     @endforeach

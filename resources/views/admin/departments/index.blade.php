@@ -59,7 +59,6 @@
                                         <th>Total jobs</th>
                                         <th>Totle Offers</th>
                                         <th>Total Providers</th>
-                                        <th>Subscription Date</th>
                                         <th>Options</th>
                                     </tr>
                                 </thead>
@@ -72,7 +71,6 @@
                                             <td><a href="{{ route('departments.show', ['id' => $department->id]) }}" class="badge bg-main-color">{{ $department->jobs->count() }}</td></a>
                                             <td><a href="{{ route('departments.show', ['id' => $department->id]) }}" class="badge bg-main-color">{{ $department->offers->count() }}</td></a>
                                             <td><a href="{{ route('departments.show', ['id' => $department->id]) }}" class="badge bg-main-color">{{ $department->profiles->count() }}</td></a>
-                                            <td>{{ $department->created_at }}</td>
                                             <td>
                                                 <a class="btn btn-info btn-xs"   href="{{ route('departments.edit',  ['id' => $department->id]) }}">Edit</a>
                                                 <a class="btn btn-danger btn-xs" href="{{ route('departments.delete',['id' => $department->id]) }}">Delete</a>

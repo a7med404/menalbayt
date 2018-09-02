@@ -12,6 +12,7 @@ use Carbon\Carbon;
 
 class CustomerController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -110,6 +111,19 @@ class CustomerController extends Controller
         return redirect()->back()->withFlashMassage('Customer Updated Successfully');
     }
 
+
+
+    /**
+     * For set null When Delete Parent
+     */
+    // public function setNull($field_name) 
+    // {
+    //     $this->$field_name = NULL; 
+    //     $this->save(); 
+    // }
+
+
+
     /**
      * Remove the specified resource from storage.
      *
@@ -119,6 +133,8 @@ class CustomerController extends Controller
     public function destroy($id)
     {
         $customerForDelete = customer::findOrFail($id);
+        // $customerForDelete->offers()->detach();
+        // $customerForDelete->offers->setNull('customer_id');
         $customerForDelete->delete();
         Session::flash('flash_massage_type', 2);
         return redirect()->back()->withFlashMassage('Customer Deleted Successfully');
@@ -131,17 +147,7 @@ class CustomerController extends Controller
         return view('admin.customers.repport');//', ['customers' => $customers]);
     }
 
-
-    /**
-     * @param
-     */
-
-    public function ajaxData()
-    {
-        $customers = customer::orderBy('id', 'desc')->get();
-        header('Content-Type: application/josn');
-        return json_encode($customers);
-    }
+    
 
 
     public function searchForCustmoer(Request $request, customer $build)
@@ -158,5 +164,58 @@ class CustomerController extends Controller
         return view('admin.customers.index', ['customers' => $customers]);
 
     }
+
+
+
+
+
+
+    /**
+     * @param
+     */
+
+    public function getDataJson()
+    {
+        $id = $_POST['id'];
+        header('Content-Type: application/josn');
+        $customers = customer::where('id', $id)->first();
+        return $customers == true ? $customers : "0";
+    }
+
+
+    /**
+     * @param
+     */
+    public function setDataJson()
+    {
+        // $newNameForImage = new UploadFile();
+        // $newNameForImage = $newNameForImage->uploadOne($request, 'image', 'public/uploads/images/customers');
+        $data = [
+            'first_name'    =>      $_POST['first_name'],
+            'last_name'     =>       $_POST['last_name'],
+            'phone_number'  =>    $_POST['phone_number'],
+            'gender'        =>          $_POST['gender'],
+            // 'image' => $newNameForImage,
+            'last_seen' => now()
+        ];
+        $createDone = customer::create($data);
+        return $createDone == true ? "1" : "0";
+    }
+
+
+    /**
+     * @param
+     */
+
+    public function getDataLoginJson()
+    {
+        
+        $phone_number = $_POST['phone_number']; //"+1201454412280";// 
+        header('Content-Type: application/josn');
+        $customers = customer::where('phone_number', $phone_number)->first();
+        return $customers == true ? $customers : "0";
+    }
+
+
 
 }

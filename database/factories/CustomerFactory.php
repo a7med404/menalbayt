@@ -8,7 +8,7 @@ $factory->define(App\Models\customer::class, function (Faker $faker) {
         'first_name'       => $faker->firstName(10),
         'last_name'        => $faker->lastName(10),
         'phone_number'     => $faker->e164PhoneNumber(),
-        'gender'           => 1,
+        'gender'           => 0,
         'last_seen'        => now(),
     ];
 });

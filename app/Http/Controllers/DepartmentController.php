@@ -10,6 +10,7 @@ use \Session;
 
 class DepartmentController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -116,5 +117,25 @@ class DepartmentController extends Controller
         $departmentForDelete = department::findOrFail($id);
         $departmentForDelete->delete();
         Session::flash('flash_massage_type', 2);
-        return redirect()->back()->withFlashMassage('Department Deleted Susscefully');    }
+        return redirect()->back()->withFlashMassage('Department Deleted Susscefully');    
     }
+
+
+
+    /**
+     * @param
+     */
+
+    public function getDataAllDepartmentsJson()
+    { 
+        header('Content-Type: application/josn');
+        $departments = department::orderBy('id', 'desc')->select('departments.id', 'departments.name')->get();
+        if($departments == "[]"){
+            return "No Data To show...";
+        }
+        return $departments;
+    }
+
+}
+
+

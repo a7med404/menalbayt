@@ -104,18 +104,23 @@ function getSelect($tableName){
 
     switch ($tableName) {
         case 'department':
-            $list = \App\Models\department::where('status', 1)->get();
+            $list = \DB::table('departments')->where('status', 1)->pluck('name', 'id');
+            return $list->toArray();
             break;
         
+        case 'job':
+            $list = \DB::table('jobs')->where('status', 1)->pluck('name', 'id');
+            return $list->toArray();
+            break;
         default:
             $list = \App\Models\department::where('status', 1)->get();
             break;
     }
-    $arrayList = [];
-    foreach ($list as $key => $value) {
-        $arrayList[$key] = $value;
-    }
-    return $arrayList;
+    // $arrayList = [];
+    // foreach ($list->toArray() as $key => $value) {
+    //     $arrayList[$key] = $value;
+    // }
+    // return $arrayList;
 }
 
 function getDefaultImage($imageName){
@@ -175,3 +180,9 @@ function getBalance($max_price, $min_price){
 function getOfferPrice($max_price, $min_price){
     return ($max_price + $min_price)/2;
 }
+
+
+
+/**
+ * To set null when delete
+ */

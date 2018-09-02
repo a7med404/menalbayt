@@ -29,7 +29,8 @@ return [
     'offer_repports' => 'Offer Repports',
     'dayliy_offer' => 'Dayliy New Offers Done Offers',
     'top_offers' => 'Top Offers',
-
+    'top_providers' => 'Top Providers',
+    
     'public_summary' => 'Public Summary',
     'offers_locations' => 'Offers Locations',
 

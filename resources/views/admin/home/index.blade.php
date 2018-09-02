@@ -37,18 +37,18 @@
                                 <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> {{ __('home/home.from_last_week') }}</span>
                             </div>
                             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                                <span class="count_top"><i class="fa fa-clock-o"></i> Average Time</span>
-                                <div class="count">123.50</div>
+                                <span class="count_top"><i class="fa fa-clock-o"></i> New Customers</span>
+                                <div class="count">17</div>
                                 <span class="count_bottom"><i class="main-color"><i class="fa fa-sort-asc"></i>3% </i> {{ __('home/home.from_last_week') }}</span>
                             </div>
                             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                                <span class="count_top"><i class="fa fa-user"></i> Total Collections</span>
-                                <div class="count">2,315</div>
+                                <span class="count_top"><i class="fa fa-user"></i> Total Providers</span>
+                                <div class="count">{{ $totalProviders->count() }}</div>
                                 <span class="count_bottom"><i class="main-color"><i class="fa fa-sort-asc"></i>34% </i> {{ __('home/home.from_last_week') }}</span>
                             </div>
                             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                                <span class="count_top"><i class="fa fa-user"></i> Total Connections</span>
-                                <div class="count">7,325</div>
+                                <span class="count_top"><i class="fa fa-user"></i> New Providers</span>
+                                <div class="count">{{ $newProviders->count() }}</div>
                                 <span class="count_bottom"><i class="main-color"><i class="fa fa-sort-asc"></i>34% </i> {{ __('home/home.from_last_week') }}</span>
                             </div>
                         </div>
@@ -71,9 +71,9 @@
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
-                                    <div class="col-md-9 col-sm-12 col-xs-12">
+                                    <div class="col-md-9 col-sm-12 col-xs-12 table-responsive">
                                         <div class="demo-container" style="height:100%">
-                                            <div class="table-responsive">
+                                            <div class="">
                                                 <div id="offersRepport" style="width:100%; height:360px;"></div> 
                                             </div>
                                         </div>
@@ -82,7 +82,7 @@
                                     <div class="col-md-3 col-sm-12 col-xs-12">
                                     <div class="float">
                                         <div class="x_title">
-                                            <h2> {{ __('home/home.top_offers') }} </h2>
+                                            <h2> {{ __('home/home.top_providers') }} </h2>
                                             <ul class="nav navbar-right panel_toolbox">
                                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                                 </li>
@@ -102,61 +102,19 @@
                                         </div>
 
                                         <ul class="list-unstyled top_profiles scroll-view">
+                                            @foreach($topProviders as $topProvider) 
                                         <li class="media event">
                                             <a class="pull-left border-aero profile_thumb">
                                             <i class="fa fa-user aero"></i>
                                             </a>
                                             <div class="media-body">
-                                            <a class="title" href="#">Ms. Mary Jane</a>
-                                            <p><strong>$2300. </strong> Agent Avarage Sales </p>
+                                            <a class="title" href="#">{{ $topProvider->profile->username}}</a>
+                                            <p><strong>$2300. </strong> {{ $topProvider->profile->department->name}} </p>
                                             <p> <small>12 Sales Today</small>
                                             </p>
                                             </div>
                                         </li>
-                                        <li class="media event">
-                                            <a class="pull-left border-main-color profile_thumb">
-                                            <i class="fa fa-user main-color"></i>
-                                            </a>
-                                            <div class="media-body">
-                                            <a class="title" href="#">Ms. Mary Jane</a>
-                                            <p><strong>$2300. </strong> Agent Avarage Sales </p>
-                                            <p> <small>12 Sales Today</small>
-                                            </p>
-                                            </div>
-                                        </li>
-                                        <li class="media event">
-                                            <a class="pull-left border-blue profile_thumb">
-                                            <i class="fa fa-user blue"></i>
-                                            </a>
-                                            <div class="media-body">
-                                            <a class="title" href="#">Ms. Mary Jane</a>
-                                            <p><strong>$2300. </strong> Agent Avarage Sales </p>
-                                            <p> <small>12 Sales Today</small>
-                                            </p>
-                                            </div>
-                                        </li>
-                                        <li class="media event">
-                                            <a class="pull-left border-aero profile_thumb">
-                                            <i class="fa fa-user aero"></i>
-                                            </a>
-                                            <div class="media-body">
-                                            <a class="title" href="#">Ms. Mary Jane</a>
-                                            <p><strong>$2300. </strong> Agent Avarage Sales </p>
-                                            <p> <small>12 Sales Today</small>
-                                            </p>
-                                            </div>
-                                        </li>
-                                        <li class="media event">
-                                            <a class="pull-left border-main-color profile_thumb">
-                                            <i class="fa fa-user main-color"></i>
-                                            </a>
-                                            <div class="media-body">
-                                            <a class="title" href="#">Ms. Mary Jane</a>
-                                            <p><strong>$2300. </strong> Agent Avarage Sales </p>
-                                            <p> <small>12 Sales Today</small>
-                                            </p>
-                                            </div>
-                                        </li>
+                                        @endforeach
                                         </ul>
                                     </div>
                                     </div>
@@ -262,7 +220,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <div class="x_panel">
                                     <div class="x_title">
-                                        <h2>Pie Graph</h2>
+                                        <h2>Gender of Customers</h2>
                                         <ul class="nav navbar-right panel_toolbox">
                                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                         </li>
@@ -303,9 +261,9 @@
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
-                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="col-md-12 col-sm-12 col-xs-12 table-responsive">
                                         <div class="demo-container" style="height:100%">
-                                            <div class="table-responsive">
+                                            <div class="">
                                                 <div id="echart_line" style="width:100%; height:360px;"></div> 
                                             </div>
                                         </div>
@@ -340,56 +298,19 @@
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
+                                    @foreach($topProviders as $topProvider) 
                                     <article class="media event">
                                     <a class="pull-left date">
                                         <p class="month">April</p>
                                         <p class="day">23</p>
                                     </a>
                                     <div class="media-body">
-                                        <a class="title" href="#">Item One Title</a>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                        <a class="title" href="#">{{ $topProvider->profile->username}}</a>
+                                        <p>{{ $topProvider->profile->department->name}}</p>
+                                        <p class="label bg-main-color">{{ $topProvider->profile->email}}</p>
                                     </div>
                                     </article>
-                                    <article class="media event">
-                                    <a class="pull-left date">
-                                        <p class="month">April</p>
-                                        <p class="day">23</p>
-                                    </a>
-                                    <div class="media-body">
-                                        <a class="title" href="#">Item Two Title</a>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                    </div>
-                                    </article>
-                                    <article class="media event">
-                                    <a class="pull-left date">
-                                        <p class="month">April</p>
-                                        <p class="day">23</p>
-                                    </a>
-                                    <div class="media-body">
-                                        <a class="title" href="#">Item Two Title</a>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                    </div>
-                                    </article>
-                                    <article class="media event">
-                                    <a class="pull-left date">
-                                        <p class="month">April</p>
-                                        <p class="day">23</p>
-                                    </a>
-                                    <div class="media-body">
-                                        <a class="title" href="#">Item Two Title</a>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                    </div>
-                                    </article>
-                                    <article class="media event">
-                                    <a class="pull-left date">
-                                        <p class="month">April</p>
-                                        <p class="day">23</p>
-                                    </a>
-                                    <div class="media-body">
-                                        <a class="title" href="#">Item Three Title</a>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                    </div>
-                                    </article>
+                                    @endforeach
                                 </div>
                                 </div>
                             </div>
@@ -397,7 +318,45 @@
                             <div class="col-md-4">
                                 <div class="x_panel">
                                 <div class="x_title">
-                                    <h3>Top Profiles</h3>
+                                    <h3>Top 5 Customers</h3>
+                                    <ul class="nav navbar-right panel_toolbox">
+                                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">Settings 1</a>
+                                        </li>
+                                        <li><a href="#">Settings 2</a>
+                                        </li>
+                                        </ul>
+                                    </li>
+                                    <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+                                    @foreach($topCustomers as $topCustomer)
+                                    <article class="media event">
+                                    <a class="pull-left date">
+                                        <p class="month">Desamber</p>
+                                        <p class="day">26</p>
+                                    </a>
+                                    <div class="media-body">
+                                        <a class="title" href="#">{{ $topCustomer->first_name." ".$topCustomer->last_name}}</a>
+                                        <p>{{ $topCustomer->phone_number}}</p>
+                                        <p class="{{ toggleOneZeroClass()[$topCustomer->gender] }}">{{ maleOrfemale()[$topCustomer->gender] }}</p>
+                                    </div>
+                                    </article>
+                                    @endforeach
+                                </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="x_panel">
+                                <div class="x_title">
+                                    <h3>Top 5 Departments </h3>
                                     <ul class="nav navbar-right panel_toolbox">
                                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                     </li>
@@ -416,132 +375,19 @@
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
+                                    @foreach($topDepartments as $topDepartment)
                                     <article class="media event">
                                     <a class="pull-left date">
-                                        <p class="month">April</p>
-                                        <p class="day">23</p>
+                                        <p class="month">Desamber</p>
+                                        <p class="day">26</p>
                                     </a>
                                     <div class="media-body">
-                                        <a class="title" href="#">Item One Title</a>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                        <a class="title" href="#">{{ $topDepartment->name}}</a>
+                                        <p>{{ substr($topDepartment->description, 0, 40) }}</p>
+                                        <p class="{{ toggleOneZeroClass()[$topDepartment->status] }}">{{ status()[$topDepartment->status] }}</p>
                                     </div>
                                     </article>
-                                    <article class="media event">
-                                    <a class="pull-left date">
-                                        <p class="month">April</p>
-                                        <p class="day">23</p>
-                                    </a>
-                                    <div class="media-body">
-                                        <a class="title" href="#">Item Two Title</a>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                    </div>
-                                    </article>
-                                    <article class="media event">
-                                    <a class="pull-left date">
-                                        <p class="month">April</p>
-                                        <p class="day">23</p>
-                                    </a>
-                                    <div class="media-body">
-                                        <a class="title" href="#">Item Two Title</a>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                    </div>
-                                    </article>
-                                    <article class="media event">
-                                    <a class="pull-left date">
-                                        <p class="month">April</p>
-                                        <p class="day">23</p>
-                                    </a>
-                                    <div class="media-body">
-                                        <a class="title" href="#">Item Two Title</a>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                    </div>
-                                    </article>
-                                    <article class="media event">
-                                    <a class="pull-left date">
-                                        <p class="month">April</p>
-                                        <p class="day">23</p>
-                                    </a>
-                                    <div class="media-body">
-                                        <a class="title" href="#">Item Three Title</a>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                    </div>
-                                    </article>
-                                </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <div class="x_panel">
-                                <div class="x_title">
-                                    <h3>Top Profiles </h3>
-                                    <ul class="nav navbar-right panel_toolbox">
-                                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                        <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">Settings 1</a>
-                                        </li>
-                                        <li><a href="#">Settings 2</a>
-                                        </li>
-                                        </ul>
-                                    </li>
-                                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                    </li>
-                                    </ul>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="x_content">
-                                    <article class="media event">
-                                    <a class="pull-left date">
-                                        <p class="month">April</p>
-                                        <p class="day">23</p>
-                                    </a>
-                                    <div class="media-body">
-                                        <a class="title" href="#">Item One Title</a>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                    </div>
-                                    </article>
-                                    <article class="media event">
-                                    <a class="pull-left date">
-                                        <p class="month">April</p>
-                                        <p class="day">23</p>
-                                    </a>
-                                    <div class="media-body">
-                                        <a class="title" href="#">Item Two Title</a>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                    </div>
-                                    </article>
-                                    <article class="media event">
-                                    <a class="pull-left date">
-                                        <p class="month">April</p>
-                                        <p class="day">23</p>
-                                    </a>
-                                    <div class="media-body">
-                                        <a class="title" href="#">Item Two Title</a>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                    </div>
-                                    </article>
-                                    <article class="media event">
-                                    <a class="pull-left date">
-                                        <p class="month">April</p>
-                                        <p class="day">23</p>
-                                    </a>
-                                    <div class="media-body">
-                                        <a class="title" href="#">Item Two Title</a>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                    </div>
-                                    </article>
-                                    <article class="media event">
-                                    <a class="pull-left date">
-                                        <p class="month">April</p>
-                                        <p class="day">23</p>
-                                    </a>
-                                    <div class="media-body">
-                                        <a class="title" href="#">Item Three Title</a>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                    </div>
-                                    </article>
+                                    @endforeach
                                 </div>
                                 </div>
                             </div>
@@ -561,7 +407,7 @@
             textStyle:{
             color: '#73879c',
             },
-            subtext: '{{ __('home/home.dayliy_offer') }}',
+            subtext: 'Offers Repports On Year',
             padding: [6, 10],
             itemGap: 10,
             left: 10,
@@ -675,12 +521,11 @@
             },
             magicType : {
                 show: true, 
-                type: ['line', 'bar', 'pie', 'stack'],
+                type: ['line', 'bar', 'pie'],
                 title: {
                 line: 'line',
                 bar: 'bar',
                 pie: 'pie',
-                stack: 'stack',
                 }
             },
             dataZoom: {
@@ -697,7 +542,7 @@
                 show: true,
                 type: 'jpeg', 
                 title: 'Save Image As',
-                pixelRatio: 55, // Resolution ratio to save image, whose default value is that of the container. Values larger than 1 (e.g.: 2) is supported when you need higher resolution.
+                // pixelRatio: 55, // Resolution ratio to save image, whose default value is that of the container. Values larger than 1 (e.g.: 2) is supported when you need higher resolution.
             }
             }
         },
@@ -719,13 +564,13 @@
 
             */
                 type : 'category', 
-                data : ['web developer','mopile Application','Teaster','Programming','Graphical','Designer','Teatcher','Worker','SEO','Freelancer','Writer','Devolper'],
+                data : ['Jan','Feb','Mar','Apr','May','June','July','Aug','Sep','Oct','Nov','Dec'],
             
                 show: true,
                 position: 'bottom',
                 offset: 10,  //Offset of x axis relative to default position. Useful when multiple x axis has same position value.
-                name: 'Dept',
-                nameLocation: 'start', //  'start' 'middle' or 'center'  'end'
+                name: 'Month 0f the year',
+                nameLocation: 'middle', //  'start' 'middle' or 'center'  'end'
                 nameGap: 30, //Gap between axis name and axis line.
                 nameRotate: 0, //Rotation of axis name.
                 inverse: 0, // Whether axis is inversed. New option from ECharts 3.
@@ -750,17 +595,18 @@
                 onZeroAxisIndex: 5,
 
                 // Name list of all categories
-                data : ['web developer','mopile Application','Teaster','Programming','Graphical','Designer','Teatcher','Worker','SEO','Freelancer','Writer','Devolper'],                    data: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                // data : ['web developer','mopile Application','Teaster','Programming','Graphical','Designer','Teatcher','Worker','SEO','Freelancer','Writer','Devolper'],                    
+                // data: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
                 // Each item could also be a specific configuration item.
                 // In this case, `value` is used as the category name.
-                data: [{
-                    value: 'web develope',
-                    // Highlight Monday
-                    textStyle: {
-                        fontSize: 20,
-                        color: 'red'
-                    }
-                }, 'mopile Application','Teaster','Programming','Graphical','Designer','Teatcher','Worker','SEO','Freelancer','Writer','Devolper']
+                // data: [{
+                //     value: 'web develope',
+                //     // Highlight Monday
+                //     textStyle: {
+                //         fontSize: 20,
+                //         color: 'red'
+                //     }
+                // }, 'mopile Application','Teaster','Programming','Graphical','Designer','Teatcher','Worker','SEO','Freelancer','Writer','Devolper']
 
 
                 }
@@ -788,7 +634,10 @@
             name:'{{ __('home/home.new_offer') }}',
             type:'bar',
             color: ['#ffcc33'],
-            data:[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3],
+            // '{{ $customerMale->count() }}'
+            data:[ <?php foreach($offerNewOfTheMonth as $month){
+                echo $month.",";
+            } ?> ],
             markPoint : {
             data : [
                 {type : 'max', name: 'maximum'},
@@ -808,11 +657,15 @@
             name:'{{ __('home/home.done_offer') }}',
             type:'bar',
             color: ['#2f4554'],
-            data:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3], 
+            data:[ <?php foreach($offerDoneOfTheMonth as $month){
+                echo $month.",";
+            } ?> ],
             markPoint : {
             data : [
-                {name : 'max', value : 182.2, xAxis: 7, yAxis: 183, symbolSize:50},
-                {name : 'min', value : 2.3, xAxis: 11, yAxis: 3}
+                {type : 'max', name: 'maximum'},
+                {type : 'min', name: 'minimum'}
+                // {name : 'max', value : 182.2, xAxis: 7, yAxis: 183, symbolSize:50},
+                // {name : 'min', value : 2.3, xAxis: 11, yAxis: 3}
             ]
             },
             markLine : {
@@ -1161,7 +1014,7 @@
                 show:true,
                 x: 'center',
                 y: 'bottom',
-                data: ['Direct Access', 'E-mail Marketing', 'Union Ad', 'Video Ads', 'Search Engine']
+                data: ['Male', 'Female']
             },
             
             toolbox: {
@@ -1215,20 +1068,11 @@
                 },
                 data: [
                     {
-                    value: 335,
-                    name: 'Direct Access',
+                    value: '{{ $customerMale->count() }}',
+                    name: 'Male ({{ $customerMale->count() }})',
                     }, {
-                    value: 310,
-                    name: 'E-mail Marketing'
-                    }, {
-                    value: 234,
-                    name: 'Union Ad'
-                    }, {
-                    value: 135,
-                    name: 'Video Ads'
-                    }, {
-                    value: 1548,
-                    name: 'Search Engine'
+                    value: '{{ $customerFemale->count() }}',
+                    name: 'Female ({{ $customerFemale->count() }})'
                     }
                 ]
             }]

@@ -173,22 +173,26 @@ class ProviderController extends Controller
                 'department_id' => $request->department_id,
             ];
 
-            // dd($profileData);
+            // dd($profileInfo->id);
             $profileSaved = $profileInfo->fill($profileData)->save();
-            /* if($profileSaved){
+            if($profileSaved){
+                /*
                 foreach ($jobs as $job) {
                     $profilesJobs->create([
                         'profile_id'  => $providerId->id,
                         'job_id' => $request->job,
                     ]);
                 }
-                Session::flash('flash_massage_type', 1);
-                return redirect('cpanel/providers')->withFlashMassage('Provider Added Successfully');
-            } */
+            }*/
+
+                
+                Session::flash('flash_massage_type');
+                return redirect('cpanel/providers')->withFlashMassage('Provider Updated Successfully');
+            } 
         }
         
         Session::flash('flash_massage_type', 4);
-        return redirect('cpanel/providers')->withFlashMassage('Provider Dose\'t Added Successfully');
+        return redirect('cpanel/providers')->withFlashMassage('Provider Dose\'t Updated Successfully');
     }
 
     /**
@@ -203,26 +207,96 @@ class ProviderController extends Controller
     }
 
 
-        /**
+
+
+
+    
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function selectJson()
+    public function getDataAllProvidersJson()
     {
         Header("Content-Type: application/json"); 
-        $id = 1;
-        $jsonArray = [];
-        $providerInfo = provider::findOrFail($id);
-        $profileInfo = profile::findOrFail($id);
-        $jobsInfo = job::findOrFail($profileInfo);
-        
-        $allInfo = array_merge($providerInfo->toArray(), $profileInfo->toArray(), $jobsInfo->toArray());
-        $allInfoCollect = collect($allInfo);
+        $providerInfo = provider::with('profile')->with('profile.jobs')->get();
+        if($providerInfo == null){
+            return "No Data To show...";
+        }
+        return $providerInfo;
+     }
 
-        $jsonArray[] = $allInfoCollect->toJson();
-        return $jsonArray;
-        // return view('admin.providers.edit', ['allInfoCollect' => $allInfoCollect, 'providerInfo' => $providerInfo]);
+
+
+    
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getDataOneJson()
+    {
+        Header("Content-Type: application/json"); 
+        $id = $_POST['id'];
+        $providerInfo = provider::with('profile')->with('profile.jobs')->find($id);
+        if($providerInfo == null){
+            return "No Data To show...";
+        }
+        return $providerInfo;
+     }
+
+
+
+
+    /**
+     * @param
+     */
+
+    public function getDataLoginJson()
+    {
+        
+        Header("Content-Type: application/json"); 
+        $phone_number = $_POST['phone_number']; //"+2970062752979";// 
+        $providerInfo = provider::with('profile')->with('profile.jobs')->where('phone_number', $phone_number)->first();
+        if($providerInfo == null){
+            return "0";
+        }
+        return $providerInfo;
+        // $profileInfo = profile::where('id', $providerInfo->id)->first();//findOrFail($providerInfo->id);
+        // // $jobsInfo = job::where('profile_id', $providerInfo->id)->get(); //::findOrFail($profileInfo);
+        // $jobsInfo = profilesJobs::where('profile_id', $providerInfo->id)
+        // ->join("jobs", 'profile_job.job_id', 'jobs.id')
+        // ->select('profile_job.job_id', 'jobs.name')->get();
+        // $allInfo = array_merge($providerInfo->toArray(), $profileInfo->toArray(), $jobsInfo->toArray());
+        
+        // $allInfoCollect = collect($allInfo);
+        // dd($allInfo);
+        // $jsonArray[] = $allInfoCollect->toJson();
+        // return $allInfo;
+        // if($allInfo == null){
+        //     return "0";
+        // }
+    }
+
+
+
+
+
+
+    /**
+     * @param
+     */
+
+    public function getDataForProviderJobsJson()
+    {
+        Header("Content-Type: application/json"); 
+        $phone_number = $_POST['phone_number']; //"+2970062752979";
+        $providerInfo = provider::with('profile')->with('profile.jobs')->where('phone_number', $phone_number)->first();
+        if($providerInfo == null){
+            return "0";
+        }
+        return $providerInfo;
     }
 }

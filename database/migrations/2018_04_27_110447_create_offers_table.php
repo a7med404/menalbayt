@@ -25,12 +25,12 @@ class CreateOffersTable extends Migration
             $table->dateTime('offer_end_date');
             $table->boolean('status')->default(1);
             $table->tinyInteger('level')->default(1);
-            $table->integer('department_id')->unsigned();
+            $table->integer('department_id')->unsigned()->nallable();
             $table->foreign('department_id')->references('id')->on('departments');
             $table->integer('provider_id')->unsigned()->nallable();
             $table->foreign('provider_id')->references('id')->on('providers');
-            $table->integer('customer_id')->unsigned();
-            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
+            $table->integer('customer_id')->unsigned()->nallable();
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('SET NULL');
             $table->timestamps();
             $table->collection = 'utf8_general_ci';
         });

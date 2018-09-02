@@ -47,6 +47,12 @@ return [
     'providers_repports' => 'Providers Repports',
 
 
+    'users' => 'Users',
+    'all_users' => 'All Users',
+    'add_user' => 'Add User',
+    'users_repports' => 'Users Repports',
+
+
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +60,8 @@ return [
     |--------------------------------------------------------------------------
     */
 
-
+    
+    'admin_area' => 'Admin Area',
     'profile' => 'Profile',
     'settings' => 'Settings',
     'log_out' => 'Log Out',
