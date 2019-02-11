@@ -6,6 +6,7 @@ use App\Helper\UploadFile;
 use App\Http\Requests\CustomerRequest;
 use App\Models\customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use \DB;
 use Session;
 use Carbon\Carbon;
@@ -13,6 +14,18 @@ use Carbon\Carbon;
 class CustomerController extends Controller
 {
 
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['getDataJson', 'setDataJson', 'getDataLoginJson']]);
+    }
+
+
+    
     /**
      * Display a listing of the resource.
      *
@@ -42,15 +55,12 @@ class CustomerController extends Controller
      */
     public function store(CustomerRequest $request, customer $customer)
     {
-        $newNameForImage = new UploadFile();
-        $newNameForImage = $newNameForImage->uploadOne($request, 'image', 'public/uploads/images/customers');
         $data = [
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'phone_number' => $request->phone_number,
             'gender' => $request->gender,
-            'image' => $newNameForImage,
-            'last_seen' => now()
+            'password'  => Hash::make('password'),
         ];
         $customer->create($data);
         Session::flash('flash_massage_type', 1);
@@ -94,17 +104,11 @@ class CustomerController extends Controller
     {
         $customerInfo = customer::findOrFail($id);
 
-        $newObjectForImage = new UploadFile();
-        $newNameForImage = $newObjectForImage->uploadOne($request, 'image', 'public/uploads/images/customers/', $customerInfo->image, 'storage/uploads/images/customers/');
-        if ($request->has('delete_image')) {
-            $newNameForImage = $newObjectForImage->deleteOneFile('storage/uploads/images/customers/', $customerInfo->image);
-        }
         $data = [
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'phone_number' => $request->phone_number,
             'gender' => $request->gender,
-            'image' => $newNameForImage,
         ];
         $customerInfo->fill($data)->save();
         Session::flash('flash_massage_type', 2);
@@ -144,7 +148,8 @@ class CustomerController extends Controller
     public function repport()
     {
         // $customers = customer::orderBy('id', 'desc')->get();
-        return view('admin.customers.repport');//', ['customers' => $customers]);
+        $customers = customer::orderBy('id', 'desc')->get();
+        return view('admin.customers.repport', ['customers' => $customers]);
     }
 
     
@@ -170,6 +175,44 @@ class CustomerController extends Controller
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+    // public function setDataUpdateJson(){
+    //     $data = [
+    //         'first_name'    =>      $_POST['first_name'],
+    //         'last_name'     =>       $_POST['last_name'],
+    //         'phone_number'  =>    $_POST['phone_number'],
+    //         'password'      =>      Hash::make($_POST['password']),
+    //         'gender'        =>          $_POST['gender'],
+    //     ];
+
+    //     $code = [];
+    //     $customer = customer::where('phone_number', $_POST['phone_number'])->first();
+    //     if($customer != null){
+    //         $code = ["code" => "3"];
+    //         return json_encode($code);
+    //     }
+    //     $createDone = customer::create($data);
+    //     if($createDone == true){
+    //         $code = ["code" => "1"];
+    //         return json_encode($code);
+    //     }else{
+    //         $code = ["code" => "0"];
+    //         return json_encode($code);
+    //     }
+    // }
+
+
+
     /**
      * @param
      */
@@ -188,18 +231,27 @@ class CustomerController extends Controller
      */
     public function setDataJson()
     {
-        // $newNameForImage = new UploadFile();
-        // $newNameForImage = $newNameForImage->uploadOne($request, 'image', 'public/uploads/images/customers');
         $data = [
             'first_name'    =>      $_POST['first_name'],
             'last_name'     =>       $_POST['last_name'],
             'phone_number'  =>    $_POST['phone_number'],
-            'gender'        =>          $_POST['gender'],
-            // 'image' => $newNameForImage,
-            'last_seen' => now()
+            'password'  =>            Hash::make($_POST['password']),
+            'gender'        =>          1,//$_POST['gender'],
         ];
+        $code = [];
+        $customer = customer::where('phone_number', $_POST['phone_number'])->first();
+        if($customer != null){
+            $code = ["code" => "3"];
+            return json_encode($code);
+        }
         $createDone = customer::create($data);
-        return $createDone == true ? "1" : "0";
+        if($createDone == true){
+            $code = ["code" => "1"];
+            return json_encode($code);
+        }else{
+            $code = ["code" => "0"];
+            return json_encode($code);
+        }
     }
 
 
@@ -209,12 +261,23 @@ class CustomerController extends Controller
 
     public function getDataLoginJson()
     {
-        
         $phone_number = $_POST['phone_number']; //"+1201454412280";// 
+        $password  =          $_POST['password'];
         header('Content-Type: application/josn');
-        $customers = customer::where('phone_number', $phone_number)->first();
-        return $customers == true ? $customers : "0";
+        $customer = customer::where('phone_number', $phone_number)->first();
+        $code = [];
+        if($customer != null){     
+            if (Hash::check($password, $customer->password)) {
+                return $customer;
+            }
+        }else{
+            return "0";
+        }
     }
+
+
+
+    
 
 
 

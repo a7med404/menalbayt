@@ -57,23 +57,6 @@
                                 {!! Form::label('description', 'Description', ['class' => 'custom-lable']) !!}  
                             </div>
                         </div>
-                        @if(isset($offerInfo->offersImages))
-                            <div class="form-group jumbotron row">
-                            @foreach($offerInfo->offersImages as $image)
-                                <div class="col-md-3 custom-lable-checkbox-radio">
-                                    {!! Form::label('delete_image', 'Delete Image', ['class' => 'custom-lable']) !!} <br />
-                                    {!! Form::checkbox('delete_image[]', $image->id, null , ['id' => 'delete_image', 'placeholder' => 'delete_image', 'class' => " {{ $errors->has('delete_image') ? ' is-invalid' : '' }}"]) !!}  
-                                    <img src="{{ asset('storage/uploads/images/offers/'.$image->image) }}" alt="offer image" width="120px" height="90px">
-                                </div>
-                            @endforeach
-                            </div>
-                        @endif
-                        <div class="form-group row">
-                            <div class="col-md-6">
-                                {!! Form::label('image', 'Image', ['class' => 'custom-lable']) !!}                            
-                                {!! Form::file('image[]', ['multiple' => 'yes', 'id' => 'image', 'class' => " {{ $errors->has('image') ? ' is-invalid' : '' }}", 'value' => "{{ old('image') }}", 'autofocus']) !!}
-                            </div>
-                        </div>
 
                         @if(isset($offerInfo))
                         <div class="form-group row mb-0">

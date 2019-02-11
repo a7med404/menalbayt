@@ -46,42 +46,39 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    
-                        <table class="table table-striped table-bordered table-hover" id="table_id">
-                            <thead>
-                                <tr>
-                                    <th>id</th>
-                                    <th>first_name</th>
-                                    <th>last_name</th>
-                                    {{-- <th>image</th> --}}
-                                    <th>gender</th>
-                                    <th>phone_number</th>
-                                    <th>Has Projects </th>
-                                    <th>Options</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($customers as $customer)
-                                        <td>{{ $customer->id }}</td>
-                                        <td><a href="{{ route('customers.show', ['id' => $customer->id]) }}">{{ $customer->first_name }}</a></td>
-                                        <td>{{ $customer->last_name }}</td>
-                                        {{-- <td class="text-center"><img src="{{ asset('storage/uploads/images/customers/'.getDefaultImage($customer->image)) }}"
-                                            class="customer_profile_img" alt="custmoer image"></td> --}}
-                                        <td><a href="{{ route('search',['gender' => $customer->gender]) }}" class="{{ toggleOneZeroClass()[$customer->gender] }}">{{ maleOrfemale()[$customer->gender] }}</a></td>
-                                        <td>{{ $customer->phone_number }}</td>
-                                        <td><a href="{{ route('customers.show', ['id' => $customer->id]) }}" class="badge bg-main-color">{{ $customer->offers->count() }}</td>
-                                        <td>
-                                            <div class="btn-group">
-                                                <a class="btn btn-default btn-sm" href="{{ route('customers.show',  ['id' => $customer->id]) }}"><i class="fa fa-arrows-alt"></i></a>
-                                                <a class="btn btn-info    btn-sm" href="{{ route('customers.edit',  ['id' => $customer->id]) }}"><i class="fa fa-pencil"></i></a>
-                                                <a class="btn btn-danger  btn-sm confirm" href="{{ route('customers.delete',['id' => $customer->id]) }}"> <i class="fa fa-times"></i></a>
-                                            </div>
-                                        </td>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="table_id">
+                                <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>first_name</th>
+                                        <th>last_name</th>
+                                        <th>gender</th>
+                                        <th>phone_number</th>
+                                        <th>Has Projects </th>
+                                        <th>Options</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-
+                                </thead>
+                                <tbody>
+                                    @foreach($customers as $customer)
+                                            <td>{{ $customer->id }}</td>
+                                            <td><a href="{{ route('customers.show', ['id' => $customer->id]) }}">{{ $customer->first_name }}</a></td>
+                                            <td>{{ $customer->last_name }}</td>
+                                            <td><a href="{{-- route('search',['gender' => $customer->gender]) --}}" class="{{ toggleOneZeroClass()[$customer->gender] }}">{{ maleOrfemale()[$customer->gender] }}</a></td>
+                                            <td>{{ $customer->phone_number }}</td>
+                                            <td><a href="{{ route('customers.show', ['id' => $customer->id]) }}" class="badge bg-main-color">{{ $customer->offers->count() }}</td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <a class="btn btn-default btn-sm" href="{{ route('customers.show',  ['id' => $customer->id]) }}"><i class="fa fa-arrows-alt"></i></a>
+                                                    <a class="btn btn-info    btn-sm" href="{{ route('customers.edit',  ['id' => $customer->id]) }}"><i class="fa fa-pencil"></i></a>
+                                                    <a class="btn btn-danger  btn-sm confirm" href="{{ route('customers.delete',['id' => $customer->id]) }}"> <i class="fa fa-times"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                   </div>
                 </div>
 

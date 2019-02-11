@@ -40,13 +40,13 @@
                       <li><a href="{{ route('departments.repport') }}">{{ __('home/sidebar.departments_repports') }}</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-tags"></i> {{ __('home/sidebar.jobs') }} <span class="fa fa-chevron-down"></span></a>
+                  {{-- <li><a><i class="fa fa-tags"></i> {{ __('home/sidebar.jobs') }} <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{ route('jobs.index') }}">{{ __('home/sidebar.all_jobs') }}</a></li>
                       <li><a href="{{ route('jobs.create') }}">{{ __('home/sidebar.add_job') }}</a></li>
                       <li><a href="{{ route('jobs.repport') }}">{{ __('home/sidebar.jobs_repports') }}</a></li>
                     </ul>
-                  </li>
+                  </li> --}}
                   <li><a><i class="fa fa-tasks"></i> {{ __('home/sidebar.offers') }} <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{ route('offers.index') }}">{{ __('home/sidebar.all_offers') }}</a></li>
@@ -95,7 +95,7 @@
               <a data-toggle="tooltip" data-placement="top" title="Lock">
                 <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="{{ route('admin.logout') }}">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
             </div>

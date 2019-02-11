@@ -140,7 +140,6 @@
         req.onreadystatechange = function(){
             if (req.readyState == req.DONE && req.status == 200) {
                 if (req.response != '') {
-
                     
                 }
             }

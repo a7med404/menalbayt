@@ -12,6 +12,19 @@ use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
+
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     public function index(User $user){
         $user = $user->all();
         return view('admin.users.index', ['users' => $user]);

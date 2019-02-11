@@ -40,7 +40,7 @@
             </div>
             <div class="form-group row">
                 <div class="col-md-3 custom-input">
-                    {!! Form::text('email', null, ['id' => 'email', 'class' => " {{ $errors->has('email') ? ' is-invalid' : '' }}", 'value' => "{{ old('email') }}", 'required', 'autofocus']) !!}
+                    {!! Form::text('email', null, ['id' => 'email', 'class' => " {{ $errors->has('email') ? ' is-invalid' : '' }}", 'value' => "{{ old('email') }}", 'autofocus']) !!}
                     {!! Form::label('email', 'E-mail', ['class' => 'custom-lable']) !!}
                 </div>
             </div>
@@ -60,15 +60,15 @@
                 </div>
             </div>
             <div class="form-group row">
-                <div class="col-md-3 custom-input has-data">
-                    {!! Form::label('job', 'Job', ['class' => 'custom-lable']) !!}
-                    {!! Form::select('job_id', getSelect('job'), null, ['id' => 'job', 'placeholder' => 'Select The Job', 'class' => "form-control {{ $errors->has('job_id') ? ' is-invalid' : '' }}", 'value' => "{{ old('job_id') }}", 'required']) !!}
+                <div class="col-md-6 custom-input">
+                    {!! Form::textarea('pio', null, ['id' => 'pio', 'class' => " {{ $errors->has('pio') ? ' is-invalid' : '' }}", 'value' => "{{ old('pio') }}", 'required', 'autofocus']) !!}
+                    {!! Form::label('Pio', 'pio', ['class' => 'custom-lable']) !!}  
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-md-6 custom-input">
-                    {!! Form::textarea('pio', null, ['id' => 'pio', 'class' => " {{ $errors->has('pio') ? ' is-invalid' : '' }}", 'value' => "{{ old('pio') }}", 'required', 'autofocus']) !!}
-                    {!! Form::label('Pio', 'pio', ['class' => 'custom-lable']) !!}  
+                    {!! Form::text('protfolios', null, ['id' => 'protfolios', 'class' => " {{ $errors->has('email') ? ' is-invalid' : '' }}", 'value' => "{{ old('protfolios') }}",  'autofocus']) !!}
+                    {!! Form::label('protfolios', 'Protfolio Link', ['class' => 'custom-lable']) !!}
                 </div>
             </div>
             <div class="form-group row">
@@ -82,41 +82,6 @@
                     {!! Form::radio('account_status', 1, null, ['id' => 'account_status', 'placeholder' => 'account_status', 'class' => "{{ $errors->has('account_status') ? ' is-invalid' : '' }}", 'value' => "{{ old('account_status') }}", 'required']) !!}  <span>Enable</span> 
                     {!! Form::radio('account_status', 0, null, ['id' => 'account_status', 'placeholder' => 'account_status', 'class' => " {{ $errors->has('account_status') ? ' is-invalid' : '' }}", 'value' => "{{ old('account_status') }}", 'required']) !!} <span>Not Enable</span> 
                 </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-md-6">
-                    {!! Form::label('image', 'Image', ['class' => 'custom-lable']) !!}                            
-                    {!! Form::file('image', ['id' => 'image', 'class' => " {{ $errors->has('image') ? ' is-invalid' : '' }}", 'value' => "{{ old('image') }}", 'autofocus']) !!}
-                </div>
-            </div>
-            <div class="form-group row">
-                @if(!empty($allInfoCollect['image']) )
-                    <div class="form-group row">
-                        <div class="col-md-3 custom-lable-checkbox-radio">
-                            {!! Form::label('delete_image', 'Delete Image', ['class' => 'custom-lable']) !!} <br />
-                            {!! Form::checkbox('image_delete', 'image_delete', null, ['id' => 'delete_image', 'value' => "{{ old('image_delete') }}"]) !!}  
-                            <img src="{{ asset('storage/uploads/images/providers/'.$allInfoCollect['image']) }}" alt="Provider image" width="120px" height="90px">
-                        </div>
-                    </div>
-                @endif
-            </div>
-            
-            <div class="form-group row">
-                <div class="col-md-6">
-                    {!! Form::label('cover_image', 'Cover Image', ['class' => 'custom-lable']) !!}                            
-                    {!! Form::file('cover_image', ['id' => 'cover_image', 'class' => " {{ $errors->has('cover_image') ? ' is-invalid' : '' }}", 'value' => "{{ old('cover_image') }}", 'autofocus']) !!}
-                </div>
-            </div>
-            <div class="form-group row">
-                @if(!empty($allInfoCollect['cover_image']) )
-                    <div class="form-group row">
-                        <div class="col-md-3 custom-lable-checkbox-radio">
-                            {!! Form::label('delete_image', 'Delete Image', ['class' => 'custom-lable']) !!} <br />
-                            {!! Form::checkbox('cover_image_delete', 'cover_image_delete', null, ['id' => 'delete_image', 'value' => "{{ old('cover_image_delete') }}"]) !!}  
-                            <img src="{{ asset('storage/uploads/images/providers/'.$allInfoCollect['cover_image']) }}" alt="Provider image" width="120px" height="90px">
-                        </div>
-                    </div>
-                @endif
             </div>
             <div class="form-group row">
                 <div class="col-md-3 custom-input">

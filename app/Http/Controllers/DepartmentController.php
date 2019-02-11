@@ -5,11 +5,26 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use \App\Models\department;
 use App\Helper\UploadFile;
+use \App\Models\provider;
+use \App\Models\profile;
 use \App\Http\Requests\DepartmentRequest;;
 use \Session;
 
 class DepartmentController extends Controller
 {
+
+
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['getDataAllDepartmentsJson', 'getProviderDept']]);
+    }
+
 
     /**
      * Display a listing of the resource.
@@ -122,6 +137,22 @@ class DepartmentController extends Controller
 
 
 
+    public function repport()
+    {
+        $departments = department::orderBy('id', 'desc')->get();
+        return view('admin.departments.repport', ['departments' => $departments]);
+    }
+
+
+
+
+
+
+
+
+
+
+
     /**
      * @param
      */
@@ -134,6 +165,23 @@ class DepartmentController extends Controller
             return "No Data To show...";
         }
         return $departments;
+    }
+
+
+
+    /**
+     * @param
+     */
+
+    public function getProviderDept()
+    { 
+        $id = $_POST['provider_id'];
+        header('Content-Type: application/josn');
+        $departments = profile::where('id', $id)->first();
+        if($departments == "[]"){
+            return "No Data To show...";
+        }
+        return $departments; 
     }
 
 }

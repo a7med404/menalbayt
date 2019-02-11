@@ -80,7 +80,6 @@
     {!! Html::script(asset('admin/js/dataTable/dataTables.bootstrap.min.js')) !!}
     <script>
 
-
         $("#table_id").DataTable({
             // paging   : false,
             // scrollY  : 400,
@@ -89,10 +88,7 @@
             // select   : true
         });
 
-
     var selectItem = $('#selectItem');
-
-
     selectItem.change( function(){
         getAll($(this).val());
     });
@@ -144,8 +140,6 @@
         req.send();
     }
 
-
-
     var getCustomers = $('#get-customers');
     getCustomers.click(function(){
         var req = new XMLHttpRequest();
@@ -187,7 +181,5 @@
         req.send();
     });
 
-
 </script>
-
 @endsection 

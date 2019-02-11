@@ -13,28 +13,18 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
 
+        '/cpanel/customers/json/*',
 
-        '/cpanel/customers/json/getDataJson',
-        '/cpanel/customers/json/setDataJson',
-        '/cpanel/customers/json/getDataLoginJson',
+        '/cpanel/rates/json/*',
 
-        '/cpanel/rates/json/setDataJson',
-        '/cpanel/rates/json/getDataJson',
+        '/cpanel/jobs/json/*',
 
-        '/cpanel/jobs/json/getDataAllJobsJson',
-
-        '/cpanel/offers/json/getDataOneJson',
-        '/cpanel/offers/json/setDataNewOfferJson',
-        '/cpanel/offers/json/getDataOfferNotApprovedForCustomerJson',
-        '/cpanel/offers/json/getDataOfferApprovedForCustomerJson',
-        '/cpanel/offers/json/getDataOfferProviderApprovedForCustomerJson',
-        '/cpanel/offers/json/getDataOfferForProviderJson',
-        '/cpanel/offers/json/setDataNewOfferJson', 
-        '/cpanel/offers/json/setProviderIdDataJson',
-        '/cpanel/offers/json/setOfferLevelDataJson',
+        '/cpanel/offers/json/*',
         
-        '/cpanel/providers/json/getDataOneJson',
-        '/cpanel/providers/json/getDataLoginJson',
-        '/cpanel/providers/json/getDataAllProvidersJson', 
+        '/cpanel/providers/json/*',
+
+        '/cpanel/comments/json/*',
+
+        '/cpanel/departments/json/*',
     ];
 }

@@ -45,6 +45,10 @@ class Kernel extends HttpKernel
         'admin' => [
             \Illuminate\Auth\Middleware\Authenticate::class,
         ],
+
+        'isAdmin' => [
+            \App\Http\Middleware\CheckAdminLevel::class,
+        ],
     ];
 
     /**

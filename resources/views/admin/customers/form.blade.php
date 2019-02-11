@@ -46,21 +46,6 @@
                             {!! Form::radio('gender', 0, null, ['id' => 'gender', 'placeholder' => 'gender', 'class' => " {{ $errors->has('gender') ? ' is-invalid' : '' }}", 'value' => "{{ old('gender') }}", 'required']) !!} <span>Female</span> 
                         </div>
                     </div>
-                    @if(isset($customerInfo->image) )
-                        <div class="form-group row">
-                            <div class="col-md-3 custom-lable-checkbox-radio">
-                                {!! Form::label('delete_image', 'Delete Image', ['class' => 'custom-lable']) !!} <br />
-                                {!! Form::checkbox('delete_image', 1, null, ['id' => 'delete_image', 'placeholder' => 'delete_image', 'class' => " {{ $errors->has('delete_image') ? ' is-invalid' : '' }}", 'value' => "{{ old('delete_image') }}"]) !!}  
-                                <img src="{{ asset('storage/uploads/images/customers/'.$customerInfo->image) }}" alt="custmoer image" width="120px" height="90px">
-                            </div>
-                        </div>
-                    @endif
-                    <div class="form-group row">
-                        <div class="col-md-3 ">
-                            {!! Form::label('image', 'Image', ['class' => 'custom-lable']) !!}                            
-                            {!! Form::file('image', null, ['id' => 'image', 'class' => " {{ $errors->has('image') ? ' is-invalid' : '' }}", 'value' => "{{ old('image') }}", 'autofocus']) !!}
-                        </div>
-                    </div>
                     
 
 

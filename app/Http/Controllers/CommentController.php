@@ -3,23 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Helper\UploadFile;
+use App\Models\comment;
 
-class ProjectController extends Controller
+
+class CommentController extends Controller
 {
-
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-
     /**
      * Display a listing of the resource.
      *
@@ -95,4 +83,31 @@ class ProjectController extends Controller
     {
         //
     }
+
+
+
+
+
+
+
+    public function setDataCommentJson()
+    {
+        # comment	offer_id	profile_id
+        $data = [
+            'offer_id'       => $_POST['offer_id'],
+            'profile_id'   => $_POST['profile_id'],
+            'comment'         => $_POST['comment'],
+        ]; 
+        $commentDone =  comment::create($data);
+        if($commentDone == true){
+            $code = ["code" => "1"];
+            return json_encode($code);
+        }else{
+            $code = ["code" => "0"];
+            return json_encode($code);
+        }
+    }
+
+
+    
 }

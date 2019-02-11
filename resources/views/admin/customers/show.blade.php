@@ -49,8 +49,6 @@
                         <div id="crop-avatar">
                           <!-- Current avatar -->
                           {{-- <img class="img-responsive avatar-view"> --}}
-                          <p class="text-center"><img src="{{ getCustomerImageOrDefaultImage($customerInfo->image) }}"
-                          class="avatar-view img-responsive" alt="custmoer image" title="custmoer avatar"></p>
                         </div>
                       </div>
                       <h3>{{ $customerInfo->first_name." ".$customerInfo->last_name}}</h3>
@@ -120,8 +118,8 @@
                                 {{-- <img src="{{ getCustomerImageOrDefaultImage($offer->image) }}" class="avatar" alt="Avatar"> --}}
                                 <div class="message_date"> 
                                   <h3 class="date text-info">{{ customDate($offer->created_at) }}</h3>
-                                  <p class="month">{{ getOfferPrice($offer->max_price, $offer->min_price) }} $</p>
-                                  <p class="month "> {{ getBalance($offer->max_price, $offer->min_price) }} $</p>
+                                  {{-- <p class="month">{{ getOfferPrice($offer->max_price, $offer->min_price) }} $</p>
+                                  <p class="month "> {{ getBalance($offer->max_price, $offer->min_price) }min_price} $</p> --}}
                                 </div>
                                 <div class="message_wrapper">
                                   <h4 class="heading">{{ $offer->title }}</h4>
@@ -152,9 +150,9 @@
                               <div class="tags">
                                     <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
                                     <a href="#"><i class="fa fa-paperclip"></i><strong> Tages </strong></a><br />
-                                    @foreach($offer->jobs as $job)
+                                    {{-- @foreach($offer->jobs as $job)
                                         <a href="#" class="tag"><i class="fa fa-tag"></i> {{ $job->name }} </a>
-                                    @endforeach
+                                    @endforeach --}}
                               </div>
                               @endforeach
 
@@ -185,8 +183,8 @@
                                   <tr>
                                     <td>{{ ++$id }}</td>
                                     <td>{{ $offer->title }}</td>
-                                    <td>{{ getOfferPrice($offer->max_price, $offer->min_price) }}</td>
-                                    <td>{{ getBalance($offer->max_price, $offer->min_price) }}</td>
+                                    {{-- <td>{{ getOfferPrice($offer->max_price, $offer->min_price) }}</td>
+                                    <td>{{ getBalance($offer->max_price, $offer->min_price) }}</td> --}}
                                     <td>{{ status()[$offer->status] }}</td>
                                     <td>{{ level()[$offer->level] }}</td>
                                     <td>

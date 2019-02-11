@@ -9,6 +9,22 @@ use \App\Models\rate;
 
 class RateController extends Controller
 {
+
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => [
+            'setDataJson', 
+            'getDataJson'
+            ]]);
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -94,13 +110,27 @@ class RateController extends Controller
      * @param
      */
 
-    public function getDataJson(rate $rate)
+    public function getDataJson()
     {
-        $provider_id = $_GET['provider_id'];
+        $jsonValue = [];
+        $provider_id = $_POST['provider_id'];
         header('Content-Type: application/josn');
-        $rate = rate::where('provider_id', $provider_id)->get();
+        $rate2  = rate::select('value')->where('provider_id', $provider_id)->where('value', 2) ->get();
+        $rate4  = rate::select('value')->where('provider_id', $provider_id)->where('value', 4) ->get();
+        $rate6  = rate::select('value')->where('provider_id', $provider_id)->where('value', 6) ->get();
+        $rate8  = rate::select('value')->where('provider_id', $provider_id)->where('value', 8) ->get();
+        $rate10 = rate::select('value')->where('provider_id', $provider_id)->where('value', 10)->get();
 
-        return $rate;
+        $rate2 =   ($rate2->count()*10)/5;
+        $rate4 =   ($rate4->count()*10)/4;
+        $rate6 =   ($rate6->count()*10)/3;
+        $rate8 =   ($rate8->count()*10)/2;
+        $rate10 =  ($rate10->count()*10)/1;
+
+
+        $jsonValue['provider_value'] = ($rate2 + $rate4 + $rate6 + $rate8 + $rate10)/5;
+        
+        return json_encode($jsonValue);
     }
 
 
@@ -108,7 +138,7 @@ class RateController extends Controller
      * @param
      */
 
-    public function setDataJson(rate $rate)
+    public function setDataJson()
     {
         # value	customer_id	provider_id
         $data = [
@@ -116,7 +146,7 @@ class RateController extends Controller
             'provider_id'   => $_POST['provider_id'],
             'value'         => $_POST['value'],
         ]; 
-        $rateDone =  $rate->updateOrCreate($data);
+        $rateDone =  rate::updateOrCreate($data);
         return $rateDone == true ? "1" : "0";
     }
 }

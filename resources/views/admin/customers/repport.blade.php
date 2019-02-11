@@ -1,29 +1,30 @@
 @extends('admin.layouts.layout')
 @section('title')
-  Customer Informations
-@endsection 
+  All Customers
+@endsection
 @section('header')
+    <!-- icheck -->
+    {!! Html::style(asset('admin/css/icheck-1.x/all.css')) !!}
+    <!-- dataTable -->
+    {!! Html::style(asset('admin/css/dataTable/dataTables.bootstrap.min.css')) !!}
+    {!! Html::style(asset('admin/css/dataTable/jquery.dataTables.min.css')) !!}
 @endsection
 
-                    @section('content')
-                        <!-- Start  Breadcrumb -->
-                        <div class="row">
-                            <div class="col-lg-12  float-right">
-                                <ol class="breadcrumb">
-                                    <li><i class="fa fa-home"></i><a href="{{ url('\cpanel') }}">HOME</a></li>
-                                    <li><i class="fa fa-users"></i><a href="{{ url('\cpanel\customers') }}">All Customers</a></li>							  	
-                                    <li><i class="fa fa-user"></i>Customer Informations</li>						  	
-                                </ol>
-                            </div><!-- /.col-lg-12 -->
-                        </div><!-- /.row -->
-                        <!-- End  Breadcrumb -->
-                        
-                        
-
+            @section('content')
+                <!-- Start  Breadcrumb -->
+                <div class="row">
+                    <div class="col-lg-12  float-right">
+                        <ol class="breadcrumb">
+                            <li><i class="fa fa-home"></i><a href="{{ url('\cpanel') }}">HOME</a></li>
+                            <li><i class="fa fa-users"></i> Customers Repports </li>
+                        </ol>
+                    </div><!-- /.col-lg-12 -->
+                </div><!-- /.row -->
+                <!-- End  Breadcrumb -->
 
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2> {{ $customerInfo->first_name." ".$customerInfo->last_name}} </h2>
+                    <h2 class="text-center"> All Customers Repports</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -42,179 +43,199 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                      
-                <div class="x_content">
-                    <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
-                      <div class="profile_img">
-                        <div id="crop-avatar">
-                          <!-- Current avatar -->
-                          {{-- <img class="img-responsive avatar-view"> --}}
-                          <p class="text-center"><img src="{{ getCustomerImageOrDefaultImage($customerInfo->image) }}"
-                          class="avatar-view img-responsive" alt="custmoer image" title="custmoer avatar"></p>
-                        </div>
-                      </div>
-                      <h3>{{ $customerInfo->first_name." ".$customerInfo->last_name}}</h3>
-
-                      <ul class="list-unstyled user_data">
-                        <li><i class="fa fa-map-marker user-profile-icon"></i> Khartoum, SUDAN
-                        </li>
-
-                        <li>
-                          <i class="fa fa-briefcase user-profile-icon"></i> {{ $customerInfo->phone_number }}
-                        </li>
-
-                        <li class="m-top-xs">
-                          <i class="fa fa-external-link user-profile-icon"></i>
-                          <a href="http://www.kimlabs.com/profile/" target="_blank">www.kimlabs.com</a>
-                        </li>
-                      </ul>
-
-                      <a href="{{ route('customers.edit', ['id' => $customerInfo->id]) }}" class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
-                      <br />
-
-                      <!-- start skills -->
-                      <ul class="list-unstyled user_data">
-                        <li>
-                          <p><h4>Has Offers</h4></p>
-                          <div class="btn btn-info">
-                            {{ $customerInfo->offers->count() }}
-                          </div>
-                        </li>
-                      </ul>
-                      <!-- end of skills -->
+                        <div class="table-responsive">
+                    
+                        <table class="table table-striped table-bordered table-hover" id="table_id">
+                            <thead>
+                                <tr>
+                                    <th>id</th>
+                                    <th>first_name</th>
+                                    <th>last_name</th>
+                                    <th>gender</th>
+                                    <th>phone_number</th>
+                                    <th>Has Projects </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($customers as $customer)
+                                        <td>{{ $customer->id }}</td>
+                                        <td><a href="{{ route('customers.show', ['id' => $customer->id]) }}">{{ $customer->first_name }}</a></td>
+                                        <td>{{ $customer->last_name }}</td>
+                                        <td><a href="{{-- route('search',['gender' => $customer->gender]) --}}" class="{{ toggleOneZeroClass()[$customer->gender] }}">{{ maleOrfemale()[$customer->gender] }}</a></td>
+                                        <td>{{ $customer->phone_number }}</td>
+                                        <td><a href="{{ route('customers.show', ['id' => $customer->id]) }}" class="badge bg-main-color">{{ $customer->offers->count() }}</td>
+                                        
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
 
                     </div>
-                    <div class="col-md-9 col-sm-9 col-xs-12">
-
-                      <div class="profile_title">
-                        <div class="col-md-6">
-                          <h2>Customer Activity Report</h2>
-                        </div>
-                        <div class="col-md-6">
-                          <div id="reportrange" class="pull-right" style="margin-top: 5px; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #E6E9ED">
-                            <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                            <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- start of user-activity-graph -->
-                      {{-- <div id="graph_bar" style="width:100%; height:280px;"></div> --}}
-                     
-
-                      <!-- end of user-activity-graph -->
-
-                      <div class="" role="tabpanel" data-example-id="togglable-tabs">
-                        <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                          <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true"> Offers </a>
-                          </li>
-                          <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Projects Worked on</a>
-                          </li>
-                        </ul>
-                        <div id="myTabContent" class="tab-content">
-                          <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-
-                            <!-- start Last Offers -->
-                            <ul class="messages">
-                              @foreach($customerInfo->offers as $offer) 
-                              <li>
-                                {{-- <img src="{{ getCustomerImageOrDefaultImage($offer->image) }}" class="avatar" alt="Avatar"> --}}
-                                <div class="message_date"> 
-                                  <h3 class="date text-info">{{ customDate($offer->created_at) }}</h3>
-                                  <p class="month">{{ getOfferPrice($offer->max_price, $offer->min_price) }} $</p>
-                                  <p class="month "> {{ getBalance($offer->max_price, $offer->min_price) }} $</p>
-                                </div>
-                                <div class="message_wrapper">
-                                  <h4 class="heading">{{ $offer->title }}</h4>
-                                  <blockquote class="message">{{ $offer->description }}</blockquote>
-                                  <br />
-                                    <ul class="">
-                                        <li class=""><strong> Department: </strong><a>{{ $offer->department->name }}</a>
-                                        </li>
-                                        <li class=""><strong> Level: </strong><a>{{ level()[$offer->level] }}</a> 
-                                        </li>
-                                        <li class=""><strong> Status: </strong><a>{{ status()[$offer->status] }}</a>
-                                        </li>
-                                        <li class=""><strong> Powered By: </strong>
-                                          <a>
-                                            @if(isset($offer->provider->profile->first_name))
-                                              {{ $offer->provider->profile->first_name." ".$offer->provider->profile->last_name }}
-                                            @else
-                                              Not Accepted
-                                            @endif
-                                          </a>
-                                        </li>
-                                    </ul>
-                                  <p class="url">
-                                    
-                                  </p>
-                                </div>
-                              </li>
-                              <div class="tags">
-                                    <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-                                    <a href="#"><i class="fa fa-paperclip"></i><strong> Tages </strong></a><br />
-                                    @foreach($offer->jobs as $job)
-                                        <a href="#" class="tag"><i class="fa fa-tag"></i> {{ $job->name }} </a>
-                                    @endforeach
-                              </div>
-                              @endforeach
-
-                            </ul>
-                            <!-- end Last Offers -->
-
-                          </div>
-                          <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
-
-                            <!-- start customers projects -->
-                            @if($customerInfo->offers->count() > 0)
-                            <div class="table-responsive">
-                              <table class="data table table-striped no-margin">
-                                <thead>
-                                  <tr>
-                                      <th>#ID</th>
-                                      <th>Title</th>
-                                      <th>Price</th>
-                                      <th>sub</th>
-                                      <th>Status</th>
-                                      <th>Level</th>
-                                      <th>Options</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                    <?php $id = 0 ?>
-                                    @foreach($customerInfo->offers as $offer) 
-                                  <tr>
-                                    <td>{{ ++$id }}</td>
-                                    <td>{{ $offer->title }}</td>
-                                    <td>{{ getOfferPrice($offer->max_price, $offer->min_price) }}</td>
-                                    <td>{{ getBalance($offer->max_price, $offer->min_price) }}</td>
-                                    <td>{{ status()[$offer->status] }}</td>
-                                    <td>{{ level()[$offer->level] }}</td>
-                                    <td>
-                                      <a class="btn btn-info btn-xs"   href="{{ route('offers.edit', ['id' => $offer->id]) }}">Edit</a>
-                                      <a class="btn btn-danger btn-xs" href="{{ url('cpanel/offer/'.$offer->id.'/delete') }}">Delete</a>
-                                    </td>
-                                  </tr>
-                                  @endforeach
-                                  
-                                </tbody>
-                              </table>
-                            </div>
-                            @else
-                                <p> No Offers To Show...</p>
-                            @endif
-                            <!-- end customers projects -->
-
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                   </div>
                 </div>
 
+                    
+                        
+                        
 
-
-                    @endsectionrefStyle
+                @endsection
     
 @section('footer')
-@endsection
+    <!-- icheck -->
+    {!! Html::script(asset('admin/js/icheck.min.js')) !!}
+    <!-- dataTable -->
+    {!! Html::script(asset('admin/js/dataTable/jquery.dataTables.min.js')) !!}
+    {!! Html::script(asset('admin/js/dataTable/dataTables.bootstrap.min.js')) !!}
+    <script>
+
+        $('#table_id').DataTable({
+            //processing: true,
+            //serverSide: true,
+            // "columnDefs":[
+            //     {
+            //         "targets":[1, 3, 7],
+            //         "orderable":false,
+            //     },
+            // ],
+            "stateSave": false,
+            "responsive": true,
+            "order": [[0, 'desc']],
+            "pagingType": "full_numbers",
+            aLengthMenu: [
+                [10, 25, 50, 100, 200, -1],
+                [10, 25, 50, 100, 200, "All"]
+            ],
+            iDisplayLength: 25,
+            fixedHeader: true,
+
+        });
+       
+       
+        /* 
+            For DataTable  Thead Custom ==============================>
+        */
+
+       /* $('#table_id thead th').each( function(){
+            if($(this).index() == 1 || $(this).index() == 2 || $(this).index() == 5){
+                var className = $(this).index() == 4 ? 'textClass' : 'selectClass';
+                var title = $(this).html();
+                var index = $(this).index();
+
+                $(this).html('<input type="text" data-value = "'+ index +'" class="' + className + '" placeholder = " Search ' + title + '">');
+            }else if($(this).index() == 4){
+                $(this).html(
+                    '<select>'
+                        +'<option value = "0">Female</option>'
+                        +'<option value = "1">Male</option>'
+                    +'</select>');
+            }
+
+        });
+
+
+        var table = $('#table_id').DataTable({
+            //processing: true,
+            serverSide: true,
+            "columnDefs":[
+                {
+                    "targets":[1, 2, 3, 4],
+                    "orderable":false,
+                },
+            ],
+           // ajax: '{{ route("ajaxDataAllCustomers") }}',
+            ajax: '{{ url('cpanel/customers/data') }}',
+            columns: [
+                {data: 'id', 'name':'id'},
+                {data: 'first_name', 'name':'first_name'},
+                {data: 'last_name', 'name':'last_name'},
+                {data: 'image', 'name':'image'},
+                {data: 'gender', 'name':'gender'},
+                {data: 'phone_number', 'name':'phone_number'},
+                //{data: 'Has Project', 'name':''},
+                //{data: 'option', 'name':''}
+            ],
+
+            "language": {
+                "url": "{{ Request::root()  }}/admin/cus/Arabic.json"
+            },
+            "stateSave": false,
+            "responsive": true,
+            "order": [[0, 'desc']],
+            "pagingType": "full_numbers",
+            aLengthMenu: [
+                [25, 50, 100, 200, -1],
+                [25, 50, 100, 200, "All"]
+            ],
+            iDisplayLength: 25,
+            fixedHeader: true,
+
+            "oTableTools": {
+                "aButtons": [
+
+
+                    {
+                        "sExtends": "csv",
+                        "sButtonText": "ملف اكسل",
+                        "sCharSet": "utf16le"
+                    },
+                    {
+                        "sExtends": "copy",
+                        "sButtonText": "نسخ المعلومات",
+                    },
+                    {
+                        "sExtends": "print",
+                        "sButtonText": "طباعة",
+                        "mColumns": "visible",
+
+
+                    }
+                ],
+
+                "sSwfPath": "{{ Request::root()  }}/admin/cus/copy_csv_xls_pdf.swf"
+            },
+
+            "dom": '<"pull-left text-left" T><"pull-right" i><"clearfix"><"pull-right text-right col-lg-6" f > <"pull-left text-left" l><"clearfix">rt<"pull-right text-right col-lg-6" pi > <"pull-left text-left" l><"clearfix"> ',
+            initComplete: function ()
+            {
+                var r = $('#table_id tfoot tr');
+                r.find('th').each(function(){
+                    $(this).css('padding', 8);
+                });
+                $('#table_id thead').append(r);
+                $('#search_0').css('text-align', 'center');
+            }
+        });
+*/
+
+
+/*        table.columns().eq(0).each(function(colIdx) {
+            $('input', table.column(colIdx).header()).on('keyup change', function() {
+                table.column(colIdx).search(this.value).draw();
+            });
+        });
+
+
+
+        table.columns().eq(0).each(function(colIdx) {
+            $('select', table.column(colIdx).header()).on('change', function() {
+                table.column(colIdx).search(this.value).draw();
+            });
+            $('select', table.column(colIdx).header()).on('click', function(e) {
+                e.stopPropagation();
+            });
+        });
+
+
+        $('#table_id tbody').on( 'mouseover', 'td', function () {
+            var colIdx = table.cell(this).index().column;
+            if ( colIdx !== lastIdx ) {
+                $( table.cells().nodes() ).removeClass( 'highlight' );
+                $( table.column( colIdx ).nodes() ).addClass( 'highlight' );
+            }
+        }).on( 'mouseleave', function () {
+            $( table.cells().nodes() ).removeClass( 'highlight' );
+        });
+        */
+
+    </script>
+@endsection 

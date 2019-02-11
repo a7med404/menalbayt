@@ -20,7 +20,7 @@ class AdminController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-    }
+    } 
 
     public function index(department $department, customer $customer, provider $provider, offer $offer){
         $customerGander = DB::table('customers')

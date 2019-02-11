@@ -9,7 +9,7 @@ class offer extends Model
     #id 	title 	description 	longitude 	latitude 	max_price 	min_price 	offer_start_date 	offer_end_date 	status 	level 	department_id 	customer_id
     protected $table = "offers";
     protected $fillable = [
-        'id', 'title', 'description', 'longitude', 'latitude', 'max_price', 'min_price', 'offer_start_date', 'offer_end_date', 'status', 'level', 'department_id', 'customer_id',
+        'id', 'title', 'description', 'longitude', 'latitude', 'max_price', 'min_price', 'offer_start_date', 'offer_end_date', 'status', 'level', 'department_id', 'customer_id', 'provider_id'
     ];
 
 
@@ -23,6 +23,10 @@ class offer extends Model
 
     public function offersImages(){
         return $this->HasMany('App\Models\offersImages');
+    }
+
+    public function comments(){
+        return $this->HasMany('App\Models\comment');
     }
 
     public function department(){

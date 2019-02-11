@@ -10,10 +10,36 @@ use \App\Models\provider;
 use \App\Models\offersjob;
 use App\Helper\UploadFile;
 use \App\Models\offersImages;
+use \App\Models\comment;
 use \Session;
 
 class OfferController extends Controller
 {
+
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => [
+            'getDataOneJson', 
+            'getDataOfferDoneForCustomerJson', 
+            'getDataOfferApprovedForCustomerJson', 
+            'getAcceptProviderJson',
+            'getCommentsOfferJson',
+            'getDataOfferProvidersApprovedForCustomerJson',
+            'getDataNewRequestForProviderJson',
+            'getDataHasWorkForProviderJson',
+            'setDataNewOfferJson',
+            'setProviderIdDataJson',
+            'setOfferLevelDataJson',
+            'getDataDoneForProviderJson'
+            ]]);
+    }
+
 
 
     /**
@@ -53,26 +79,14 @@ class OfferController extends Controller
             'offer_end_date'   => $dateTime[1],
             'min_price'        => $budget[0],
             'max_price'        => $budget[1],
-            'longitude'        => 22213.222,
-            'latitude'         => 342.4211111,
-            'description'      => $request->description,
+            'description'      => $request->description, 
             'status'           => 1,
             'level'            => 1,
             'department_id'    => 1,
             'customer_id'      => 1,
         ];
         $offerGetId = $offer->create($data);
-        $uploadObject = new UploadFile();
-        $names = $uploadObject->uploadMulti($request, 'image', 'public/uploads/images/offers');
 
-        if ($names) {
-            foreach ($names as $name) {
-                $offersImages->create([
-                    'offer_id' => $offerGetId->id,
-                    'image' =>  $name,
-                ]);
-            }
-        }
         Session::flash('flash_massage_type');
         return redirect('cpanel/offers')->withFlashMassage('Offer Added Susscefully');
 
@@ -125,34 +139,11 @@ class OfferController extends Controller
             'offer_end_date'   => $dateTime[1],
             'min_price'        => $budget[0],
             'max_price'        => $budget[1],
-            'longitude'        => 22213.222,
-            'latitude'         => 342.4211111,
             'description'      => $request->description,
             'status'           => 1,
         ];
         $offerSeved = $offerModel->fill($data)->save();
         if($offerSeved){
-            $uploadObject = new UploadFile();
-            $names = $uploadObject->uploadMulti($request, 'image', 'public/uploads/images/offers');
-
-            if ($names) {
-                foreach ($names as $name) {
-                    offersImages::create([
-                        'offer_id' => $offerModel->id,
-                        'image' =>  $name,
-                    ]);
-                }
-            }
-            if($request->has('delete_image')){
-                $offersImages = offersImages::where('offer_id', $id)->findOrFail($request->delete_image);
-                foreach ($offersImages as $image) {
-                    $image->delete();
-                }
-                // $offersImages->delete(array_pluck($offersImages, 'image'));
-                $uploadObject->deleteMultiFile('storage/images/offers/', array_pluck($offersImages, 'image'));
-                
-            }
-
             Session::flash('flash_massage_type');
             return redirect()->back()->withFlashMassage('Offer Updated Susscefully');
         }else {
@@ -169,10 +160,21 @@ class OfferController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $offerForDelete = offer::findOrFail($id);
+        $offerForDelete->delete();
+        Session::flash('flash_massage_type', 2);
+        return redirect()->back()->withFlashMassage('Offer Deleted Successfully');
     }
 
 
+
+
+
+    public function repport()
+    {
+        $offers = offer::orderBy('id', 'desc')->get();
+        return view('admin.offers.repport', ['offers' => $offers]);
+    }
 
 
 
@@ -190,7 +192,7 @@ class OfferController extends Controller
     {
         Header("Content-Type: application/json"); 
         $id = $_POST['id'];
-        $offer = offer::with('department')->with('jobs')->find($id);
+        $offer = offer::with('department')->where('status', 1)->find($id);
         if($offer == null){
             return "No Data To show...";
         }
@@ -199,15 +201,150 @@ class OfferController extends Controller
 
 
 
+
+
+
+
     /**
      * @param
      */
 
-    public function getDataOfferNotApprovedForCustomerJson()
+    public function getAcceptProviderJson($offer_id, $provider_id)
     {
-        $customer_id = $_POST['customer_id'];
+        $offerModel =  offer::find($offer_id);
+        $data = [
+            'provider_id'            => $provider_id,
+            'level'            => 2,
+        ];
+        $offerSeved = $offerModel->fill($data)->save();
+
+        $message = ['Code' => "0"];
+        if($offerSeved == true){
+            $message = ['Code' => "1"];
+        }
+        $message =  json_encode($message);
+
+        return $offerModel;
+        return $message;
+    }
+    
+    
+    /**
+     * @param
+     */
+
+    public function getDataOfferApprovedForCustomerJson($id)
+    {
         header('Content-Type: application/josn');
-        $offer = offer::with('department')->with('jobs')->where('customer_id', $customer_id)->where('level', 1)->get();
+        $offer = offer::with('department')->with('customer')->where('customer_id', $id)->orderBy('id', 'DESC')->where('level',  '<', 4)->where('status', 1)->get();
+        if($offer == "[]"){
+            return "No Data To show...";
+        }
+        return $offer;
+    }
+
+
+
+
+    /**
+     * @param
+     */
+
+    public function getDataOfferDoneForCustomerJson($id)
+    {
+        $customer_id = $id;
+        header('Content-Type: application/josn');
+        $offer = offer::with('department')->with('customer')->where('customer_id', $customer_id)->orderBy('id', 'DESC')->where('level', 4)->where('status', 1)->get();
+        if($offer == "[]"){
+            return "No Data To show...";
+        }
+        return $offer;
+    }
+
+
+
+
+
+    /**
+     * @param
+     */
+
+    public function getCommentsOfferJson($id)
+    {
+        $offer_id = $id;
+        header('Content-Type: application/josn');
+        $offer = comment::where('offer_id', $offer_id)->with('profile.department')->with('provider')->orderBy('id', 'DESC')->get();
+        if($offer == "[]"){
+            return "No Data To show...";
+        }
+        return $offer;
+    }
+
+
+
+        
+    /**
+     * @param
+     */
+
+    public function getDataOfferProvidersApprovedForCustomerJson($id)
+    {
+        header('Content-Type: application/josn');
+        $offer = offer::with('department')->where('customer_id', $id)->where('level', 1)->orderBy('id', 'DESC')->get();
+        if($offer == "[]"){
+            return "No Data To show...";
+        }
+        return $offer;
+    }
+
+
+        
+
+    
+    /**
+     * @param
+     */
+
+    public function getDataNewRequestForProviderJson($id)
+    {
+        $department_id = $id;
+        header('Content-Type: application/josn');
+        $offer = offer::with('department')->with('customer')->where('provider_id', null)->where('department_id', $department_id)->where('level', 1)->orderBy('id', 'DESC')->get();
+        if($offer == "[]"){
+            return "No Data To show...";
+        }
+        return $offer;
+    }
+
+
+
+                
+    /**
+     * @param
+     */
+
+    public function getDataHasWorkForProviderJson($id)
+    {
+        header('Content-Type: application/josn');
+        $offer = offer::with('department')->with('customer')->where('provider_id', $id)->where('level', 2)->orderBy('id', 'DESC')->get();
+        if($offer == "[]"){
+            return "No Data To show...";
+        }
+        return $offer;
+    }
+
+
+
+
+        
+    /**
+     * @param
+     */
+
+    public function getDataDoneForProviderJson($id)
+    {
+        header('Content-Type: application/josn');
+        $offer = offer::with('department')->with('customer')->where('provider_id', $id)->where('level', 4)->orderBy('id', 'DESC')->get();
         if($offer == "[]"){
             return "No Data To show...";
         }
@@ -218,90 +355,6 @@ class OfferController extends Controller
 
 
     
-    /**
-     * @param
-     */
-
-    public function getDataOfferApprovedForCustomerJson()
-    {
-        $customer_id = $_POST['customer_id'];
-        header('Content-Type: application/josn');
-        $offer = offer::with('department')->with('jobs')->where('customer_id', $customer_id)->where('level', '!=', 1)->get();
-        if($offer == "[]"){
-            return "No Data To show...";
-        }
-        return $offer;
-    }
-
-
-
-        
-    /**
-     * @param
-     */
-
-    public function getDataOfferProviderApprovedForCustomerJson()
-    {
-        $customer_id = $_POST['customer_id'];
-        header('Content-Type: application/josn');
-        $offer = offer::with('department')->with('provider.profile')->with('jobs')->where('customer_id', $customer_id)->whereNotNull('provider_id')->get();
-        if($offer == "[]"){
-            return "No Data To show...";
-        }
-        return $offer;
-    }
-
-
-        
-    /**
-     * @param
-     */
-
-    public function getDataOfferForProviderJson()
-    {
-        $department_id = $_POST['department_id'];
-        header('Content-Type: application/josn');
-        $offer = offer::with('department')->with('customer')->with('jobs')->where('provider_id', null)->where('department_id', $department_id)->get();
-        if($offer == "[]"){
-            return "No Data To show...";
-        }
-        return $offer;
-    }
-
-
-
-
-
-
-
-     /**
-     * @param
-     */
-/*
-    public function getDataJobsOfTheOfferJson()
-    {
-        $id = 1; # $_GET['id'] #offer ID
-        header('Content-Type: application/josn');
-        $jobs = offersjob::where('offer_id', $id)
-        ->join("jobs", 'offer_job.job_id', 'jobs.id')
-        // ->join("offer_job", 'offers.id', 'offer_job.offer_id')
-
-        // ->join("customers", 'offers.customer_id', 'customers.id')
-        ->select('offer_job.job_id', 'jobs.name')->get();
-        // dd($offer);
-        if($jobs == "[]"){
-            return "No Data To show...";
-        }
-        return $jobs;
-    }
- */
-
-
-
-
-
-
-
 
     /**
      * @param
@@ -310,60 +363,73 @@ class OfferController extends Controller
     public function setDataNewOfferJson()
     { 
         $budget = explode('-', $_POST['budget'], 2);
+        // $budget = [];
+        // if($_POST['budget']){
+        // }else{
+        //     $budget[0] = "Open Budget";
+        //     $budget[1] = "Open Budget";
+        // }
         $data = [
             'title'            => $_POST['title'],
             'offer_start_date' => $_POST['offer_start_date'],
             'offer_end_date'   => $_POST['offer_end_date'],
             'min_price'        => $budget[0],
             'max_price'        => $budget[1],
-            'longitude'        => $_POST['longitude'],
-            'latitude'         => $_POST['latitude'],
             'description'      => $_POST['description'],
             'status'           => 1,
             'level'            => 1,
             'department_id'    => $_POST['department_id'],
             'customer_id'      => $_POST['customer_id'],
         ];
+        $code = [];
         $offer = offer::create($data);
-        if ($offer) {
-            $offerDone = $offer->jobs()->attach($_POST['jobs']);
-            if($offerDone){
-                return "1";
-            }
+        if($offer == true){
+            $code = ["code" => "1"];
+            return json_encode($code);
+        }else{
+            $code = ["code" => "0"];
+            return json_encode($code);
         }
-        return "0";
     }
 
 
+
+    // /**
+    //  * @param
+    //  */
+
+    // public function setProviderIdDataJson()
+    // { 
+    //     $offerModel =  offer::findOrFail($_POST['offer_id']);
+    //     $providerModel =  provider::findOrFail($_POST['provider_id']);
+    //     $offerModel->provider_id = $providerModel->id;
+    //     $offerModel->level = $_POST['level'];
+    //     $offerSeved = $offerModel->save();
+    //     $code = [];
+    //     if($offerSeved == true){
+    //         $code = ["code" => "1"];
+    //         return json_encode($code);
+    //     }else{
+    //         $code = ["code" => "0"];
+    //         return json_encode($code);
+    //     }
+    // }
 
     /**
      * @param
      */
 
-    public function setProviderIdDataJson()
+    public function setOfferLevelDataJson($offer_id, $level)
     { 
-        $offerModel =  offer::findOrFail($_POST['id']);
-        $providerModel =  provider::findOrFail($_POST['provider_id']);
-        $offerModel->provider_id = $providerModel->id;
-        $offerModel->level = $_POST['level'];
-        $offerSeved = $offerModel->save();
-        if($offerSeved){
-            return "1";
+        $offerModel =  offer::findOrFail($offer_id);
+        $offerSeved = $offerModel->fill(['level' => $level])->save();
+        $code = [];
+        if($offerSeved == true){
+            $code = ["code" => "1"];
+            return json_encode($code);
+        }else{
+            $code = ["code" => "0"];
+            return json_encode($code);
         }
-        return "0";
-    }
-
-    /**
-     * @param
-     */
-
-    public function setOfferLevelDataJson()
-    { 
-        $offerModel =  offer::findOrFail($_POST['id']);
-        $offerSeved = $offerModel->fill(['level' => $_POST['level']])->save();
-        if($offerSeved){
-            return "1";
-        }
-        return "0";
     }
 }

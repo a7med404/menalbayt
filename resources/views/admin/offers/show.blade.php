@@ -59,7 +59,7 @@
                                 </li>
                             </ul>
 
-                            <a href="{{ route('offers.edit', ['id' => $offerInfo->id]) }}" class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
+                            <a href="{{ route('offers.edit', ['id' => $offerInfo->id]) }}" class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Info</a>
                             <br />
 
                             <!-- start skills -->
@@ -108,8 +108,7 @@
                                                 {{-- <img src="{{ getCustomerImageOrDefaultImage($offer->image) }}" class="avatar" alt="Avatar"> --}}
                                                 <div class="message_date"> 
                                                     <h3 class="date text-info">{{ customDate($offerInfo->created_at) }}</h3>
-                                                    <p class="month">{{ getOfferPrice($offerInfo->max_price, $offerInfo->min_price) }} $</p>
-                                                    <p class="month "> {{ getBalance($offerInfo->max_price, $offerInfo->min_price) }} $</p>
+                                                    {{-- <p class="month">{{ $offerInfo->max_price  $offerInfo->min_price }} -SD</p>  --}}
                                                 </div>
                                                 <div class="message_wrapper">
                                                     <h4 class="heading">{{ $offerInfo->title }}</h4>
@@ -125,7 +124,7 @@
                                                         <li class=""><strong> Start Date: </strong><a>{{ $offerInfo->offer_start_date }}</a>
                                                         </li>
                                                         <li class=""><strong> Created_at: </strong><a>{{ $offerInfo->created_at}}</a>
-                                      td                  </li>
+                                                        </li>
                                                         <li class=""><strong> Powered By: </strong>
                                                             <a>
                                                                 @if(isset($offer->provider->profile->first_name))
@@ -141,19 +140,7 @@
                                             <div class="tags">
                                                 <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
                                                 <a href="#"><i class="fa fa-paperclip"></i><strong> Tages </strong></a><br />
-                                                @foreach($offerInfo->jobs as $job)
-                                                    <a href="#" class="tag"><i class="fa fa-tag"></i> {{ $job->name }} </a>
-                                                @endforeach
                                             </div>
-                                            @if(isset($offerInfo->offersImages))
-                                                <div class="form-group jumbotron row">
-                                                @foreach($offerInfo->offersImages as $image)
-                                                    <div class="col-md-3">
-                                                        <img src="{{ getOfferImageOrDefaultImage($image->image) }}" alt="offer image" width="120px" height="90px">
-                                                    </div>
-                                                @endforeach
-                                                </div>
-                                            @endif
                                         </ul>
                                         <!-- end Last Offers -->
 

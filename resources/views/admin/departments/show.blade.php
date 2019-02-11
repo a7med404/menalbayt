@@ -64,7 +64,7 @@
                               <br />
 
                               <!-- start Tags -->
-                              <h4>Has Jobs</h4>
+                              {{-- <h4>Has Jobs</h4> --}}
                               {{-- <ul class="list-unstyled user_data">
                                 <li>
                                   <p>Web Applications</p>
@@ -91,9 +91,6 @@
                                   </div>
                                 </li>
                               </ul> --}}
-                              @foreach($departmentInfo->jobs as $job)
-                                  <a href="#" class="tag"><i class="fa fa-tag"></i> {{ $job->name }} </a>
-                              @endforeach
                               <!-- end of Tags -->
 
                             </div>
@@ -119,7 +116,7 @@
                               <div class="" role="tabpanel" data-example-id="togglable-tabs">
                                 <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                                   <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true"> Reports </a></li>
-                                  <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">jobs</a></li>
+                                  {{-- <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">jobs</a></li> --}}
                                 </ul>
                                 <div id="myTabContent" class="tab-content">
                                   <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
@@ -175,45 +172,6 @@
                                   </div>
                                   <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
 
-                                    <!-- start departments projects -->
-                                    @if($departmentInfo->jobs->count() > 1)
-                                    <div class="table-responsive">
-                                      <table class="data table table-striped no-margin">
-                                        <thead>
-                                          <tr>
-                                              <th>#ID</th>
-                                              <th>Name</th>
-                                              <th>Status</th>
-                                              <th>Created_at</th>
-                                              <th>Totle Offers</th>
-                                              <th>Total Providers</th>
-                                              <th>Options</th>
-                                          </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php $id = 0 ?>
-                                            @foreach($departmentInfo->jobs as $job) 
-                                          <tr>
-                                            <td>{{ ++$id }}</td>
-                                            <td><a href="{{ route('jobs.show', ['id' => $job->id]) }}">{{ $job->name }}</a></td>
-                                            <td><a class="{{ toggleOneZeroClass()[$job->status] }}">{{ status()[$job->status] }}</a></td>
-                                            <td><a href="{{ route('jobs.show', ['id' => $job->id]) }}" class="">{{ $job->created_at }}</td></a>
-                                            <td><a href="{{ route('jobs.show', ['id' => $job->id]) }}" class="badge bg-main-color">{{ $job->offers->count() }}</td></a>
-                                            <td><a href="{{ route('jobs.show', ['id' => $job->id]) }}" class="badge bg-main-color">{{ $job->profiles->count() }}</td></a>
-                                            <td>
-                                                <a class="btn btn-info btn-xs"   href="{{ route('jobs.edit', ['id' => $job->id]) }}">Edit</a>
-                                                <a class="btn btn-danger btn-xs" href="{{ url('cpanel/job/'.$job->id.'/delete') }}">Delete</a>
-                                            </td>
-                                          </tr>
-                                          @endforeach
-                                          
-                                        </tbody>
-                                      </table>
-                                    </div>
-                                    @else
-                                        <p> No jobs To Show...</p>
-                                    @endif
-                                    <!-- end departments projects -->
                                   </div>
                                 </div>
                               </div>

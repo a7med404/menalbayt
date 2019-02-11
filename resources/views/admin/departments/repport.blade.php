@@ -1,7 +1,7 @@
 
 @extends('admin.layouts.layout')
 @section('title')
-  All Departments
+Repports Departments
 @endsection
 @section('header')
     <!-- icheck -->
@@ -17,18 +17,15 @@
                             <div class="col-lg-12  float-right">
                                 <ol class="breadcrumb">
                                     <li><i class="fa fa-home"></i><a href="{{ url('\cpanel') }}">HOME</a></li>
-                                    <li><i class="fa fa-users"></i>All Departments </li>						  	
+                                    <li><i class="fa fa-users"></i> Departments Repports</li>						  	
                                 </ol>
-                            </div><!-- /.col-lg-12 -->
-                            <div class="col-lg-12">
-                                <a href="{{ route('departments.create') }}" class="btn-border bull-rigth">Add New Department</a>					  	
                             </div><!-- /.col-lg-12 -->
                         </div><!-- /.row -->
                         <!-- End  Breadcrumb -->
 
                         <div class="x_panel">
                         <div class="x_title">
-                            <h2> All Departments </h2>
+                            <h2>Repports All Departments </h2>
                             <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                             </li>
@@ -58,7 +55,6 @@
                                         <th>Status</th>
                                         <th>Totle Offers</th>
                                         <th>Total Providers</th>
-                                        <th>Options</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -69,10 +65,7 @@
                                             <td><a class="{{ toggleOneZeroClass()[$department->status] }}">{{ status()[$department->status] }}</a></td>
                                             <td><a href="{{ route('departments.show', ['id' => $department->id]) }}" class="badge bg-main-color">{{ $department->offers->count() }}</td></a>
                                             <td><a href="{{ route('departments.show', ['id' => $department->id]) }}" class="badge bg-main-color">{{ $department->profiles->count() }}</td></a>
-                                            <td>
-                                                <a class="btn btn-info btn-xs"   href="{{ route('departments.edit',  ['id' => $department->id]) }}">Edit</a>
-                                                <a class="btn btn-danger btn-xs confirm" href="{{ route('departments.delete',['id' => $department->id]) }}">Delete</a>
-                                            </td>
+                                            
                                         </tr>
                                     @endforeach
                                 </tbody>

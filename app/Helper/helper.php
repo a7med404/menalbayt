@@ -169,6 +169,16 @@ function getProviderImageOrDefaultImage($imageName = null){
 }
 
 
+function getProviderIdentifierImageOrDefaultImage($imageName = null){
+    if($imageName != null){
+        if(\File::exists(public_path('storage/uploads/images/identifiers/'.$imageName))){
+            return asset('storage/uploads/images/identifiers/'.$imageName);
+        }
+    return asset('storage/uploads/images/providers/default_provider_image.png');
+    }
+}
+
+
 function customDate($date){
     return $date;
 }

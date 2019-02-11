@@ -5,15 +5,37 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\provider;
 use \App\Models\job;
+use \App\Models\department;
 use \App\Models\profile;
 use \App\Models\profilesJobs;
 use App\Helper\UploadFile;
+use Illuminate\Support\Facades\Hash;
 use \App\Http\Requests\ProviderRequest;
 use \Session;
 
 
 class ProviderController extends Controller
 {
+
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => [
+            'getDataAllProvidersJson', 
+            'getDataOneJson', 
+            'getDataLoginJson', 
+            'setDataJson',
+            'getDataForProviderJobsJson',
+            'getDataOffOnJson'
+            ]]);
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -41,16 +63,16 @@ class ProviderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, provider $provider, profile $profile)//, profilesJobs $profilesJobs)
+    public function store(Request $request, provider $provider, profile $profile)
     {
-        // dd($request->all());
+        # first_name 	last_name 	username 	email 	gender 	pio 	protfolios 	identifier_number 	identifier_type 	identifier_image 	trusted 	department_id
         $newObjectForImage = new UploadFile();
-        $newNameForImage = $newObjectForImage->uploadOne($request, 'image', 'public/uploads/images/providers');
-        $newNameForCoverImage = $newObjectForImage->uploadOne($request, 'cover_image', 'public/uploads/images/providers');
         $newNameForIdentifierImage = $newObjectForImage->uploadOne($request, 'identifier_image', 'public/uploads/images/identifiers');
+        
         $providerData = [
             'phone_number' => $request->phone_number,
             'account_status' => $request->account_status,
+            'password' => "password",
             'last_seen' => now()
         ];
         $providerId = $provider->create($providerData);
@@ -62,8 +84,7 @@ class ProviderController extends Controller
                 'username' => $request->username,
                 'email' => $request->email,
                 'gender' => $request->gender,
-                'image' => $newNameForImage,
-                'cover_image' => $newNameForCoverImage,
+                'protfolios' => "protfolios",
                 'pio' => $request->pio,
                 'identifier_type' => $request->identifier_type,
                 'identifier_number' => $request->identifier_number,
@@ -73,16 +94,6 @@ class ProviderController extends Controller
             ];
 
             $profileId = $profile->create($profileData);
-            /* if($profileId->id){
-                foreach ($jobs as $job) {
-                    $profilesJobs->create([
-                        'profile_id'  => $providerId->id,
-                        'job_id' => $request->job,
-                    ]);
-                }
-                Session::flash('flash_massage_type', 1);
-                return redirect('cpanel/providers')->withFlashMassage('Provider Added Successfully');
-            } */
         }
         
         Session::flash('flash_massage_type', 4);
@@ -130,26 +141,11 @@ class ProviderController extends Controller
         $profileInfo = profile::findOrFail($id);
         // dd($request->all());
 
-        $newObjectForImage = new UploadFile();
-        $newNameForImage = $newObjectForImage->uploadOne($request, 'image', 'public/uploads/images/providers', $profileInfo->image, 'storage/uploads/images/providers/');
-        if ($request->has('image_delete')) {
-            $newNameForImage = $newObjectForImage->deleteOneFile('storage/uploads/images/providers/', $profileInfo->image);
-        }
-         
-        $newObjectForCoverImage = new UploadFile();
-        $newNameForCoverImage = $newObjectForCoverImage->uploadOne($request, 'cover_image', 'public/uploads/images/providers', $profileInfo->cover_image, 'storage/uploads/images/providers/');
-        if ($request->has('cover_image_delete')) {
-            $newNameForCoverImage = $newObjectForCoverImage->deleteOneFile('storage/uploads/images/providers/', $profileInfo->cover_image);
-        }
-       
-
         $newObjectForIdentifierImage = new UploadFile();
         $newNameForIdentifierImage = $newObjectForIdentifierImage->uploadOne($request, 'identifier_image', 'public/uploads/images/identifiers', $profileInfo->identifier_image, 'storage/uploads/images/identifiers/');
         if ($request->has('identifier_image_delete')) {
             $newNameForIdentifierImage = $newObjectForIdentifierImage->deleteOneFile('storage/uploads/images/identifiers/', $profileInfo->identifier_image);
         }
-        // dd($newNameForImage, $newNameForCoverImage, $newNameForIdentifierImage);
-        
         $providerData = [
             'phone_number' => $request->phone_number,
             'account_status' => $request->account_status,
@@ -158,34 +154,23 @@ class ProviderController extends Controller
         $providerSaved = $providerInfo->fill($providerData)->save();
         if($providerSaved){
             $profileData = [
-                'first_name' => $request->first_name,
-                'last_name' => $request->last_name,
-                'username' => $request->username,
-                'email' => $request->email,
-                'gender' => $request->gender,
-                'image' => $newNameForImage,
-                'cover_image' => $newNameForCoverImage,
-                'pio' => $request->pio,
-                'identifier_type' => $request->identifier_type,
+                'first_name'        =>        $request->first_name,
+                'last_name'         =>         $request->last_name,
+                'username'          =>          $request->username,
+                'email'             =>             $request->email,
+                'gender'            =>            $request->gender,
+                'protfolios'        =>        $request->protfolios,
+                'pio'               =>               $request->pio,
+                'identifier_type'   =>   $request->identifier_type,
                 'identifier_number' => $request->identifier_number,
-                'identifier_image' => $newNameForIdentifierImage,
-                'trusted' => $request->trusted,
-                'department_id' => $request->department_id,
+                'identifier_image'  =>  $newNameForIdentifierImage,
+                'trusted'           =>           $request->trusted,
+                'department_id'     =>     $request->department_id
             ];
 
             // dd($profileInfo->id);
             $profileSaved = $profileInfo->fill($profileData)->save();
             if($profileSaved){
-                /*
-                foreach ($jobs as $job) {
-                    $profilesJobs->create([
-                        'profile_id'  => $providerId->id,
-                        'job_id' => $request->job,
-                    ]);
-                }
-            }*/
-
-                
                 Session::flash('flash_massage_type');
                 return redirect('cpanel/providers')->withFlashMassage('Provider Updated Successfully');
             } 
@@ -203,8 +188,33 @@ class ProviderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $providerForDelete = provider::findOrFail($id);
+        $providerForDelete->delete();
+        Session::flash('flash_massage_type', 2);
+        return redirect()->back()->withFlashMassage('Customer Deleted Successfully');
     }
+
+
+
+
+
+
+
+
+
+    public function repport()
+    {
+        $providers = provider::orderBy('id', 'desc')->get();
+        return view('admin.providers.repport', ['providers' => $providers]);
+    }
+
+
+
+
+
+
+
+
 
 
 
@@ -220,12 +230,12 @@ class ProviderController extends Controller
     public function getDataAllProvidersJson()
     {
         Header("Content-Type: application/json"); 
-        $providerInfo = provider::with('profile')->with('profile.jobs')->get();
+        $providerInfo = provider::with('profile')->get();
         if($providerInfo == null){
             return "No Data To show...";
         }
         return $providerInfo;
-     }
+    }
 
 
 
@@ -236,11 +246,10 @@ class ProviderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function getDataOneJson()
+    public function getDataOneJson($id)
     {
         Header("Content-Type: application/json"); 
-        $id = $_POST['id'];
-        $providerInfo = provider::with('profile')->with('profile.jobs')->find($id);
+        $providerInfo = provider::with('profile')->find($id);
         if($providerInfo == null){
             return "No Data To show...";
         }
@@ -258,27 +267,49 @@ class ProviderController extends Controller
     {
         
         Header("Content-Type: application/json"); 
-        $phone_number = $_POST['phone_number']; //"+2970062752979";// 
-        $providerInfo = provider::with('profile')->with('profile.jobs')->where('phone_number', $phone_number)->first();
-        if($providerInfo == null){
+        $phone_number = $_POST['phone_number'];  
+        $password = $_POST['password']; //"+2970062752979";// 
+        $providerInfo = provider::with('profile')->with('profile.department')->where('account_status', 1)->where('phone_number', $phone_number)->first();
+ 
+        if($providerInfo != null){
+            if (Hash::check($password, $providerInfo->password)) {
+                return $providerInfo;
+            }
+        }
+        else{
             return "0";
         }
-        return $providerInfo;
-        // $profileInfo = profile::where('id', $providerInfo->id)->first();//findOrFail($providerInfo->id);
-        // // $jobsInfo = job::where('profile_id', $providerInfo->id)->get(); //::findOrFail($profileInfo);
-        // $jobsInfo = profilesJobs::where('profile_id', $providerInfo->id)
-        // ->join("jobs", 'profile_job.job_id', 'jobs.id')
-        // ->select('profile_job.job_id', 'jobs.name')->get();
-        // $allInfo = array_merge($providerInfo->toArray(), $profileInfo->toArray(), $jobsInfo->toArray());
-        
-        // $allInfoCollect = collect($allInfo);
-        // dd($allInfo);
-        // $jsonArray[] = $allInfoCollect->toJson();
-        // return $allInfo;
-        // if($allInfo == null){
-        //     return "0";
-        // }
     }
+
+
+
+    // /**
+    //  * @param
+    //  */
+
+    // public function getDataLoginJson()
+    // {
+        
+    //     Header("Content-Type: application/json"); 
+    //     $phone_number = $_POST['phone_number']; //"+2970062752979";// 
+    //     $password = $_POST['password']; //"+2970062752979";// 
+    //     $providerInfo = provider::with('profile')->with('profile.department')->where('phone_number', $phone_number)
+ 
+    //     // $pID = $providerInfo->id;
+    //     // $department = department::where('id', 41)
+
+    //     ->join('departments', 'departments.id', '=', 'provider.department_id')->first();
+
+    //     if($providerInfo != null){
+    //         if (Hash::check($password, $providerInfo->password)) {
+    //             return $providerInfo;
+    //             // return $pID;
+    //         }
+    //     }
+    //     else{
+    //         return "0";
+    //     }
+    // }
 
 
 
@@ -288,15 +319,77 @@ class ProviderController extends Controller
     /**
      * @param
      */
-
-    public function getDataForProviderJobsJson()
+    public function setDataJson()
     {
-        Header("Content-Type: application/json"); 
-        $phone_number = $_POST['phone_number']; //"+2970062752979";
-        $providerInfo = provider::with('profile')->with('profile.jobs')->where('phone_number', $phone_number)->first();
-        if($providerInfo == null){
-            return "0";
+        $code = []; 
+        $provider = provider::where('phone_number', $_POST['phone_number'])->first();
+        if($provider != null){
+            $code = ["code" => "3"];
+            return json_encode($code);
         }
-        return $providerInfo;
+        $providerData = [
+            'phone_number'  =>    $_POST['phone_number'],
+            'password'  =>           Hash::make($_POST['password']),
+            'account_status' => 0,
+            'last_seen' => now()
+        ];
+        
+        $providerSaved = provider::create($providerData);
+        if($providerSaved->id){
+            $profileData = [
+                'id'  => $providerSaved->id,
+                'first_name'    =>      $_POST['first_name'],
+                'last_name'     =>       $_POST['last_name'],
+                'username' => "none",
+                'email' => "none",
+                'gender' => 0,
+                'protfolios' => "none",
+                'pio' => "none",
+                'identifier_type' => 0,
+                'identifier_number' => 0,
+                'identifier_image' => "none",
+                'trusted' => 0,
+                'department_id' => 1,
+            ];
+            $createDone = profile::create($profileData);
+            if($createDone == true){
+                $code = ["code" => "1"];
+                return json_encode($code);
+            }else{
+                $code = ["code" => "0"];
+                return json_encode($code);
+            }
+            $profileId = $profile->create($profileData);
+        }
+
     }
+
+
+
+    
+
+
+
+    /**
+     * @param
+     */
+
+    public function getDataOffOnJson($onOff, $provider_id)
+    {
+        $providerModel =  provider::find($provider_id);
+        $data = [
+            'is_available'            => $onOff,
+        ];
+        $Seved = $providerModel->fill($data)->save();
+
+        $message = ['Code' => "0"];
+        if($Seved == true){
+            $message = ['Code' => "1"];
+        }
+        $message =  json_encode($message);
+        return $message;
+    }
+
+
+
 }

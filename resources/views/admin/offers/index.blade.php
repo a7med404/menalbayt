@@ -54,11 +54,11 @@
                                     <tr>
                                         <th>#ID</th>
                                         <th>Title</th>
-                                        <th>Price</th>
-                                        <th>sub</th>
+                                        <th>Max Price</th>
+                                        <th>Min Price</th>
                                         <th>Status</th>
                                         <th>Level</th>
-                                        <th>Deparment</th>
+                                        <th>Department</th>
                                         <th>Customer</th>
                                         <th>Options</th>
                                     </tr>
@@ -68,15 +68,15 @@
                                         <tr class="odd gradeX"> 
                                             <td>{{ $offer->id }}</td>
                                             <td><a href="{{ route('offers.show', ['id' => $offer->id]) }}">{{ $offer->title }}</a></td>
-                                            <td><a href="{{ route('offers.show', ['id' => $offer->id]) }}">{{ ($offer->max_price + $offer->min_price)/2 }}</a></td>
-                                            <td><a href="{{ route('offers.show', ['id' => $offer->id]) }}">{{ getBalance($offer->max_price, $offer->min_price) }}</a></td>
+                                            <td><a href="{{ route('offers.show', ['id' => $offer->id]) }}">{{ $offer->max_price." SD"  }}</a></td> 
+                                            <td><a href="{{ route('offers.show', ['id' => $offer->id]) }}">{{ $offer->min_price." SD" }}</a></td>
                                             <td><a class="{{ toggleOneZeroClass()[$offer->status] }}">{{ status()[$offer->status] }}</a></td>
                                             <td><a class="{{ toggleLevelClass()[$offer->level] }}" href="{{ route('offers.show', ['id' => $offer->id]) }}">{{ level()[$offer->level] }}</a></td>
                                             <td><a href="{{ route('offers.show', ['id' => $offer->id]) }}" class="badge bg-main-color">{{ $offer->department->name }}</td></a>
                                             <td><a href="{{ route('offers.show', ['id' => $offer->id]) }}" class="badge bg-main-color">{{ $offer->customer->first_name }}</td></a>
                                             <td>
                                                 <a class="btn btn-info btn-xs"   href="{{ route('offers.edit', ['id' => $offer->id]) }}">Edit</a>
-                                                <a class="btn btn-danger btn-xs" href="{{ route('offers.delete', ['id' => $offer->id]) }}">Delete</a>
+                                                <a class="btn btn-danger btn-xs confirm" href="{{ route('offers.delete', ['id' => $offer->id]) }}">Delete</a>
                                             </td>
                                         </tr>
                                     @endforeach

@@ -11,6 +11,20 @@ use \Session;
 
 class JobController extends Controller
 {
+
+
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -133,7 +147,7 @@ class JobController extends Controller
         if($jobs == "[]"){
             return "No Data To show...";
         }
-        return $jobs;
+        return response()->json($jobs);
     }
 
 

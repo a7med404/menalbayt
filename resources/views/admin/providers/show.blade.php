@@ -51,8 +51,7 @@
                                 <li> <i class="fa fa-briefcase  fa-fw user-profile-icon"></i> {{ $providerInfo->phone_number }}</li>
                                 <li> <i class="fa fa-clock-o    fa-fw user-profile-icon"></i> <strong>Last Seen: </strong> {{ $providerInfo->last_seen }}</li>
                             </ul>
-
-                            <a href="{{ route('providers.edit', ['id' => $providerInfo->id]) }}" class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
+                            <a href="{{ route('providers.edit', ['id' => $providerInfo->id]) }}" class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Provider</a>
                             <br />
 
                             <!-- start skills -->
@@ -65,18 +64,8 @@
                                 </div>
                                 </li>
                             </ul>
-                            <div class="tags">
-                                <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-                                <a href="#"><i class="fa fa-paperclip"></i><strong> Jobs </strong></a><br />
-                                @foreach($providerInfo->profile->jobs as $job)
-                                    <a href="{{ route('jobs.show', ['id' => $job->id]) }}" class="tag"><i class="fa fa-tag"></i> {{ $job->name }} </a>
-                                @endforeach
-                            </div>
-                            <!-- end of skills -->
-
                             </div>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-
                                 <div class="profile_title">
                                     <div class="col-md-6">
                                         <h2>Provider Activity Report</h2>
@@ -91,7 +80,6 @@
                                 <!-- start of user-activity-graph -->
                                 <div id="graph_bar" style="width:100%; height:280px;"></div>
                                 <!-- end of user-activity-graph -->
-
                                 <div class="" role="tabpanel" data-example-id="togglable-tabs">
                                     <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                                         <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true"> providers </a></li>
@@ -100,7 +88,6 @@
                                     </ul>
                                     <div id="myTabContent" class="tab-content">
                                         <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-
                                             <!-- start Last providers -->
                                             <ul class="messages">
                                                 @foreach($providerInfo->offers as $offer) 
@@ -108,8 +95,7 @@
                                                     {{-- <img src="{{ getCustomerImageOrDefaultImage($offer->image) }}" class="avatar" alt="Avatar"> --}}
                                                     <div class="message_date"> 
                                                         <h3 class="date text-info">{{ customDate($offer->created_at) }}</h3>
-                                                        <p class="month">{{ getOfferPrice($offer->max_price, $offer->min_price) }} $</p>
-                                                        <p class="month "> {{ getBalance($offer->max_price, $offer->min_price) }} $</p>
+                                                        <p class="month">{{ $offer->max_price ." ". $offer->min_price }} USD</p>
                                                     </div>
                                                     <div class="message_wrapper">
                                                         <h4 class="heading">{{ $offer->title }}</h4>
@@ -122,29 +108,17 @@
                                                                 <li class=""><strong> Powered By: </strong><a>{{ $offer->customer->first_name." ".$offer->customer->last_name }}</a></li>
                                                             </ul>
                                                         <p class="url">
-                                                            
                                                         </p>
                                                     </div>
                                                 </li>
-                                                <div class="tags">
-                                                        <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-                                                        <a href="#"><i class="fa fa-paperclip"></i><strong> Tages </strong></a><br />
-                                                        @foreach($offer->jobs as $job)
-                                                            <a href="#" class="tag"><i class="fa fa-tag"></i> {{ $job->name }} </a>
-                                                        @endforeach
-                                                </div>
                                                 @endforeach
-
                                                 </ul>
                                             <!-- end Last Providers -->
-
                                         </div>
                                         <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
-
                                             <!-- start customers projects -->
                                             
                                             <!-- end customers projects -->
-
                                         </div>
                                         <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
                                             <ul class="messages">
@@ -169,6 +143,7 @@
                                                             <li class=""><strong> Pio: </strong><a>{{ $providerInfo->profile->pio }}</a></li>
                                                             <li class=""><strong> Identifier Type: </strong><a>{{ identifierType()[$providerInfo->profile->identifier_type] }}</a></li>
                                                             <li class=""><strong> Identifier Number: </strong><a>{{ $providerInfo->profile->identifier_number }}</a></li>
+                                                            <li class=""><strong> Identifier Image: </strong><a><img src="{{ getProviderIdentifierImageOrDefaultImage($providerInfo->profile->identifier_number) }}" /> </a></li>
                                                         </ul>
                                                     </div>
                                                 </li>

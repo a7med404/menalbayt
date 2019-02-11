@@ -8,7 +8,7 @@ class provider extends Model
 {
     protected $table = "providers";
     protected $fillable = [
-        'id', 'phone_number', 'balance', 'is_available', 'account_status', 'trusted', 'last_seen',
+        'id', 'phone_number', 'password', 'balance', 'is_available', 'account_status', 'trusted', 'last_seen',
     ];
 
     public function profile(){
@@ -18,4 +18,8 @@ class provider extends Model
     public function offers(){
         return $this->hasMany('App\Models\offer');
     } 
+
+    public function comments(){
+        return $this->hasMany('App\Models\comment', 'profile_id', 'id');
+    }
 }
